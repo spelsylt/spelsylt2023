@@ -16,6 +16,7 @@ public partial class car : CharacterBody3D
     private Vector3 _acceleration = Vector3.Zero;
     private Vector3 _velocity = Vector3.Zero;
     private float _steerAngle = 0.0f;
+    [Export] private CarModelInfo _model;
 
     public override void _PhysicsProcess(double delta)
     {
@@ -67,7 +68,8 @@ public partial class car : CharacterBody3D
         var turn = Input.GetActionStrength("steer_left");
         turn -= Input.GetActionStrength("steer_right");
         _steerAngle = turn * Mathf.DegToRad(_steeringLimit);
-        // TODO rotate wheel models
+        _model.FrontWheelRight.Rotation = new Vector3(0f, _steerAngle*2, 0f);
+        _model.FrontWheelLeft.Rotation = new Vector3(0f, _steerAngle*2, 0f);
         _acceleration = Vector3.Zero;
         if (Input.IsActionPressed("accelerate"))
         {
