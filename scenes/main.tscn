@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5c1d5mx1y6ws"]
+[gd_scene load_steps=7 format=3 uid="uid://c5c1d5mx1y6ws"]
 
 [ext_resource type="PackedScene" uid="uid://cj0smsnie8gpl" path="res://scenes/entities/player_camera.tscn" id="2_7qdmr"]
 [ext_resource type="PackedScene" uid="uid://ye6r1hyurkjw" path="res://scenes/entities/cars/car_fiat_panda.tscn" id="2_lltar"]
@@ -7,6 +7,11 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k3bvy"]
 size = Vector3(35.065, 1.37, 43.115)
+
+[sub_resource type="BoxMesh" id="BoxMesh_581lj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ap3o5"]
+size = Vector3(5.365, 0.04, 6.21)
 
 [node name="Main" type="Node"]
 
@@ -34,3 +39,13 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_k3bvy")
+
+[node name="Ramp" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.977153, 0.212536, 0, -0.212536, 0.977153, -6.51683, 1.2767, 2.13415)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ramp"]
+transform = Transform3D(5.3422, 0, 0, 0, 0.0361373, 0, 0, 0, 6.23579, 0, 0, 0)
+mesh = SubResource("BoxMesh_581lj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp"]
+shape = SubResource("BoxShape3D_ap3o5")
