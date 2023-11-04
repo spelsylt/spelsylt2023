@@ -9,10 +9,9 @@ size = Vector3(1.5, 1.48, 3.435)
 height = 1.425
 radius = 0.29
 
-[node name="base_car" type="CharacterBody3D" node_paths=PackedStringArray("_frontRightWheel", "_frontLeftWheel")]
+[node name="base_car" type="CharacterBody3D" node_paths=PackedStringArray("_cameraPos")]
 script = ExtResource("1_1m7wg")
-_frontRightWheel = NodePath("")
-_frontLeftWheel = NodePath("")
+_cameraPos = NodePath("CameraPos")
 
 [node name="CollisionBody" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_hkday")
@@ -25,7 +24,5 @@ shape = SubResource("CylinderShape3D_sc568")
 transform = Transform3D(-4.37114e-08, -1, 0, 0.997905, -4.36198e-08, -0.0646891, 0.0646891, -2.82765e-09, 0.997905, 0, -0.445018, 1.10901)
 shape = SubResource("CylinderShape3D_sc568")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.79132, 0.16158, -0.589665, 0, 0.964447, 0.264277, 0.611403, -0.209128, 0.763186, -1.97861, 1.97077, 3.85876)
-fov = 68.6
-near = 0.046
+[node name="CameraPos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.995453, -0.095255, 0, 0.095255, 0.995453, 0, 1.27847, 4.94667)

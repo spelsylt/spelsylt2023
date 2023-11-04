@@ -12,11 +12,19 @@ public partial class car : CharacterBody3D
     [Export] private float _friction = -2.0f;
     [Export] private float _drag = -2.0f;
     [Export] private float _maxSpeedreverse = 3.0f;
+    [Export] private PlayerCamera _playerCamera;
+    [Export] private Node3D _cameraPos;
 
     private Vector3 _acceleration = Vector3.Zero;
     private Vector3 _velocity = Vector3.Zero;
     private float _steerAngle = 0.0f;
     [Export] private CarModelInfo _model;
+
+    public override void _Ready()
+    {
+        base._Ready();
+        _playerCamera.target = _cameraPos;
+    }
 
     public override void _PhysicsProcess(double delta)
     {

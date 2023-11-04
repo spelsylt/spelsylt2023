@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5c1d5mx1y6ws"]
+[gd_scene load_steps=5 format=3 uid="uid://c5c1d5mx1y6ws"]
 
 [ext_resource type="PackedScene" uid="uid://6twf14gfx5f6" path="res://scenes/entities/cars/fiat_panda.tscn" id="1_gcbh0"]
+[ext_resource type="PackedScene" uid="uid://cj0smsnie8gpl" path="res://scenes/entities/player_camera.tscn" id="2_7qdmr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_skql4"]
 size = Vector3(30.875, 0.085, 30.28)
@@ -25,5 +26,9 @@ shape = SubResource("BoxShape3D_aoqxb")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.579537, 0.814946, 0, -0.814946, 0.579537, 1.08046, 8.01778, 3.34691)
 
-[node name="Panda" parent="." instance=ExtResource("1_gcbh0")]
+[node name="Panda" parent="." node_paths=PackedStringArray("_playerCamera") instance=ExtResource("1_gcbh0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02804, 0.824315, -0.787206)
+_playerCamera = NodePath("../player_camera")
+
+[node name="player_camera" parent="." instance=ExtResource("2_7qdmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.89308, 0)
