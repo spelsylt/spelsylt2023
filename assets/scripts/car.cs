@@ -69,7 +69,7 @@ public partial class car : CharacterBody3D
         if (!_drifting && _velocity.Length() > _slipSpeed) {
             _drifting = true;
         }
-        if (_drifting && Velocity.Length() < _slipSpeed && _steerAngle == 0) {
+        if (_drifting && _velocity.Length() < _slipSpeed && _steerAngle == 0) {
             _drifting = false;
         }
         var traction = _drifting ? _tractionFast : _tracationSlow;
