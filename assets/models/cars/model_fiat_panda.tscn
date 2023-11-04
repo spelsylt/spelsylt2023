@@ -3,7 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://drtdfomv0mxnr" path="res://assets/models/cars/fiatPanda.glb" id="1_fsj5d"]
 [ext_resource type="Script" path="res://assets/scripts/CarModelInfo.cs" id="2_1y42o"]
 
-[node name="fiatPanda" node_paths=PackedStringArray("FrontWheelLeft", "FrontWheelRight") instance=ExtResource("1_fsj5d")]
+[node name="fiatPanda" node_paths=PackedStringArray("FrontWheelLeft", "FrontWheelRight", "BackWheelLeft", "BackWheelRight") instance=ExtResource("1_fsj5d")]
 script = ExtResource("2_1y42o")
 FrontWheelLeft = NodePath("Tire_002")
 FrontWheelRight = NodePath("Tire")
+BackWheelLeft = NodePath("Tire_001")
+BackWheelRight = NodePath("Tire_003")
