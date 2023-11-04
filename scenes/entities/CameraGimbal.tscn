@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2fmw6unx854g"]
+
+[ext_resource type="Script" path="res://assets/scripts/PlayerCamera.cs" id="1_lgoig"]
+
+[node name="CameraGimbal" type="Node3D" node_paths=PackedStringArray("_outerGimbal", "_innerGimbal")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_lgoig")
+_outerGimbal = NodePath("OuterGimbal")
+_innerGimbal = NodePath("OuterGimbal/InnerGimbal")
+
+[node name="OuterGimbal" type="Node3D" parent="."]
+
+[node name="InnerGimbal" type="Node3D" parent="OuterGimbal"]
+
+[node name="Camera3D" type="Camera3D" parent="OuterGimbal/InnerGimbal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.01398)
