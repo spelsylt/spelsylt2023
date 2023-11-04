@@ -195,17 +195,20 @@ shadow_mesh = SubResource("ArrayMesh_l00yt")
 [sub_resource type="BoxShape3D" id="BoxShape3D_yxhas"]
 size = Vector3(1.47, 1.226, 3.35)
 
-[node name="fiatPanda" type="VehicleBody3D" node_paths=PackedStringArray("_cameraPosition")]
+[node name="fiatPanda" type="VehicleBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+mass = 1115.0
 script = ExtResource("1_bbmuc")
-_cameraPosition = NodePath("CameraPos")
+_acceleration = 200.0
+_maxRPM = 5000.0
+_maxTorque = 100.0
 
 [node name="BackLeftWheel" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0.586178, -0.382276, -1.12004)
 use_as_traction = true
 wheel_radius = 0.28
 wheel_rest_length = 0.1
-wheel_friction_slip = 0.5
+wheel_friction_slip = 0.86
 suspension_travel = 0.1
 suspension_stiffness = 50.0
 damping_compression = 1.9
@@ -221,7 +224,7 @@ transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -0.57762
 use_as_traction = true
 wheel_radius = 0.28
 wheel_rest_length = 0.1
-wheel_friction_slip = 0.5
+wheel_friction_slip = 0.86
 suspension_travel = 0.1
 suspension_stiffness = 50.0
 damping_compression = 1.9
@@ -237,7 +240,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.57762, -0.37979, 1.11443)
 use_as_steering = true
 wheel_radius = 0.28
 wheel_rest_length = 0.1
-wheel_friction_slip = 0.5
+wheel_friction_slip = 0.86
 suspension_travel = 0.1
 suspension_stiffness = 50.0
 damping_compression = 1.9
@@ -253,7 +256,7 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0.586178
 use_as_steering = true
 wheel_radius = 0.28
 wheel_rest_length = 0.1
-wheel_friction_slip = 0.5
+wheel_friction_slip = 0.86
 suspension_travel = 0.1
 suspension_stiffness = 50.0
 damping_compression = 1.9
@@ -272,6 +275,3 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0884967, 0)
 shape = SubResource("BoxShape3D_yxhas")
-
-[node name="CameraPos" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39158, -5.87678)

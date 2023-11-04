@@ -8,7 +8,6 @@ public partial class PhysicsCar : VehicleBody3D
 	[Export] private float _maxRPM = 500;
 	[Export] private float _maxTorque = 50;
 	[Export] private float _steeringSpeed = 5.0f;
-	[Export] private Node3D _cameraPosition;
 	[Export] private PlayerCamera _playerCamera;
 
 	private List<VehicleWheel3D> _drivingWheels;
@@ -17,7 +16,6 @@ public partial class PhysicsCar : VehicleBody3D
     {
         base._Ready();
 		_playerCamera.target = this;
-		_playerCamera.position = _cameraPosition;
 		_drivingWheels = GetDrivingWheels();
     }
 
