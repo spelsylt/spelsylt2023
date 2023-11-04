@@ -9,10 +9,8 @@ size = Vector3(1.5, 1.48, 3.435)
 height = 1.425
 radius = 0.29
 
-[node name="base_car" type="CharacterBody3D" node_paths=PackedStringArray("_frontRightWheel", "_frontLeftWheel")]
+[node name="base_car" type="CharacterBody3D"]
 script = ExtResource("1_1m7wg")
-_frontRightWheel = NodePath("")
-_frontLeftWheel = NodePath("")
 
 [node name="CollisionBody" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_hkday")
