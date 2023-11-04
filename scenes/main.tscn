@@ -1,38 +1,36 @@
 [gd_scene load_steps=5 format=3 uid="uid://c5c1d5mx1y6ws"]
 
-[ext_resource type="PackedScene" uid="uid://6twf14gfx5f6" path="res://scenes/entities/cars/fiat_panda.tscn" id="1_gcbh0"]
 [ext_resource type="PackedScene" uid="uid://cj0smsnie8gpl" path="res://scenes/entities/player_camera.tscn" id="2_7qdmr"]
+[ext_resource type="PackedScene" uid="uid://ye6r1hyurkjw" path="res://scenes/entities/cars/car_fiat_panda.tscn" id="2_lltar"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_skql4"]
-size = Vector3(30.875, 0.085, 30.28)
+[sub_resource type="BoxMesh" id="BoxMesh_dil4f"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_aoqxb"]
-size = Vector3(30, 0.165, 30)
+[sub_resource type="BoxShape3D" id="BoxShape3D_k3bvy"]
+size = Vector3(35.065, 1.37, 43.115)
 
 [node name="Main" type="Node"]
-
-[node name="TestTrack" type="Node3D" parent="."]
-
-[node name="Model" type="MeshInstance3D" parent="TestTrack"]
-mesh = SubResource("BoxMesh_skql4")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TestTrack"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestTrack/StaticBody3D"]
-transform = Transform3D(0.999997, -0.00241719, 0.00107046, 0.00241666, 0.999997, 0.000489945, -0.00107162, -0.000487368, 0.999999, 0, 0, 0)
-shape = SubResource("BoxShape3D_aoqxb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.579537, 0.814946, 0, -0.814946, 0.579537, 1.08046, 8.01778, 3.34691)
 
-[node name="Panda" parent="." node_paths=PackedStringArray("_playerCamera") instance=ExtResource("1_gcbh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02804, 0.824315, -0.787206)
-_playerCamera = NodePath("../player_camera")
-
 [node name="player_camera" parent="." instance=ExtResource("2_7qdmr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.89308, 0)
+transform = Transform3D(0.217689, 0.453432, -0.864298, -0.290662, 0.875473, 0.386086, 0.931733, 0.167172, 0.322376, -5.18198, 3.71029, -0.842862)
 _lerpSpeed = 10.0
 _distanceToTarget = 5.0
 _heightToTarget = 5.0
 _angleOffset = 10.0
+
+[node name="fiatPanda" parent="." node_paths=PackedStringArray("_playerCamera") instance=ExtResource("2_lltar")]
+transform = Transform3D(1, 0, 0, 0, 0.997789, 0.0664655, 0, -0.0664655, 0.997789, 0, 3.02855, 0)
+_playerCamera = NodePath("../player_camera")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.988129, -0.153624, 0, 0.153624, 0.988129, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(34.8125, 0, 0, 0, 0.999973, 0.318833, 0, -0.00741757, 42.9823, 0, 0, 0)
+mesh = SubResource("BoxMesh_dil4f")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_k3bvy")
