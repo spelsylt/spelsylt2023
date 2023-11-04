@@ -1,10 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmr4bf2fkd6e3"]
+[gd_scene load_steps=3 format=3 uid="uid://dnkww51r0eduq"]
 
 [ext_resource type="PackedScene" uid="uid://drtdfomv0mxnr" path="res://assets/models/cars/fiatPanda.glb" id="1_fsj5d"]
-[ext_resource type="Script" path="res://assets/scripts/CarModelInfo.cs" id="2_1y42o"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_vl1bg"]
+script/source = "using Godot;
+using System;
+
+public partial class CarModelInfo : Node3D
+{
+	[Export] public Node3D FrontWheelLeft;
+	[Export] public Node3D FrontWheelRight;
+	[Export] public Node3D BackWheelLeft;
+	[Export] public Node3D BackWheelRight;
+}
+"
 
 [node name="fiatPanda" node_paths=PackedStringArray("FrontWheelLeft", "FrontWheelRight", "BackWheelLeft", "BackWheelRight") instance=ExtResource("1_fsj5d")]
-script = ExtResource("2_1y42o")
+script = SubResource("CSharpScript_vl1bg")
 FrontWheelLeft = NodePath("Tire_002")
 FrontWheelRight = NodePath("Tire")
 BackWheelLeft = NodePath("Tire_001")
