@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c5c1d5mx1y6ws"]
 
 [ext_resource type="PackedScene" uid="uid://6twf14gfx5f6" path="res://scenes/entities/cars/fiat_panda.tscn" id="1_gcbh0"]
-[ext_resource type="PackedScene" uid="uid://lwfmysy7mwf6" path="res://scenes/entities/player_camera.tscn" id="2_7qdmr"]
+[ext_resource type="PackedScene" uid="uid://cj0smsnie8gpl" path="res://scenes/entities/player_camera.tscn" id="2_7qdmr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_skql4"]
 size = Vector3(30.875, 0.085, 30.28)
