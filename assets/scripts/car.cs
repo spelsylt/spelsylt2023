@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.ComponentModel.DataAnnotations;
 
 public partial class car : CharacterBody3D
 {
@@ -63,10 +61,12 @@ public partial class car : CharacterBody3D
         if (d > 0)
         {
             _velocity = newHeading * _velocity.Length();
+            SpinWheels(delta, true);
         }
         if (d < 0) 
         {
             _velocity = -newHeading * (_velocity.Length() < _maxSpeedreverse ? _velocity.Length() : _maxSpeedreverse);
+            SpinWheels(delta, false);
         }
         LookAt(Transform.Origin + newHeading, Transform.Basis.Y);
     }
@@ -76,8 +76,8 @@ public partial class car : CharacterBody3D
         var turn = Input.GetActionStrength("steer_left");
         turn -= Input.GetActionStrength("steer_right");
         _steerAngle = turn * Mathf.DegToRad(_steeringLimit);
-        _model.FrontWheelRight.Rotation = new Vector3(0f, _steerAngle*2, 0f);
-        _model.FrontWheelLeft.Rotation = new Vector3(0f, _steerAngle*2, 0f);
+        _model.FrontWheelRight.Rotation = new Vector3(_model.FrontWheelRight.Rotation.X, _steerAngle*2, 0f);
+        _model.FrontWheelLeft.Rotation = new Vector3(_model.FrontWheelLeft.Rotation.X, _steerAngle*2, 0f);
         _acceleration = Vector3.Zero;
         if (Input.IsActionPressed("accelerate"))
         {
@@ -97,5 +97,20 @@ public partial class car : CharacterBody3D
         FloorSnapLength = 1.0f;
         MoveAndSlide();
         _velocity = Velocity;
+    }
+
+    private void SpinWheels(float delta, bool forward) {
+        var spinSpeed = _velocity.Length();
+        if (forward) {
+            spinSpeed = -spinSpeed;
+        }
+        spinWheel(_model.FrontWheelLeft, spinSpeed, delta);
+        spinWheel(_model.FrontWheelRight, spinSpeed, delta);
+        spinWheel(_model.BackWheelLeft, spinSpeed, delta);
+        spinWheel(_model.BackWheelRight, spinSpeed, delta);
+    }
+
+    private void spinWheel(Node3D wheel, float speed, float delta) {
+        wheel.Rotation = new Vector3(wheel.Rotation.X + (speed * delta), wheel.Rotation.Y, wheel.Rotation.Z);
     }
 }

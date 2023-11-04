@@ -4,3 +4,9 @@
 
 [node name="player_camera" type="Camera3D"]
 script = ExtResource("1_pbk2w")
+
+_lerpSpeed = null
+_distanceToTarget = null
+_heightToTarget = null
+_angleOffset = null
+
