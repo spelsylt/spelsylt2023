@@ -17,6 +17,7 @@ public partial class car : CharacterBody3D
     [Export] private float _tracationSlow = 0.75f;
     [Export] private float _tractionFast = 0.02f;
     [Export] private float _tranctionHandbrake = 0.01f;
+    [Export] private float _SteeringSpeed = 0.1f;
 
     private bool _drifting = false;
     private bool _handbraking = false;
@@ -99,7 +100,8 @@ public partial class car : CharacterBody3D
     {
         var turn = Input.GetActionStrength("steer_left");
         turn -= Input.GetActionStrength("steer_right");
-        _steerAngle = turn * Mathf.DegToRad(_steeringLimit);
+        _steerAngle = Mathf.Lerp(_steerAngle, turn * Mathf.DegToRad(_steeringLimit), _SteeringSpeed);
+
         _model.FrontWheelRight.Rotation = new Vector3(_model.FrontWheelRight.Rotation.X, _steerAngle*2, 0f);
         _model.FrontWheelLeft.Rotation = new Vector3(_model.FrontWheelLeft.Rotation.X, _steerAngle*2, 0f);
         _acceleration = Vector3.Zero;
