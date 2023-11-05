@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyemq52f1fbki"]
+
+[ext_resource type="Script" path="res://assets/scripts/Pile.cs" id="1_aydlw"]
+[ext_resource type="PackedScene" uid="uid://dya5vn2gt6dij" path="res://scenes/entities/items/cube_item.tscn" id="2_fwnfw"]
+
+[node name="pile" type="Node3D"]
+script = ExtResource("1_aydlw")
+
+[node name="base_pile_item" parent="." instance=ExtResource("2_fwnfw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.670922, 0, 0)
+
+[node name="base_pile_item" parent="base_pile_item" instance=ExtResource("2_fwnfw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.758282, 1.05337, 0)
+
+[node name="base_pile_item2" parent="." instance=ExtResource("2_fwnfw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.783694, 0, 0)
