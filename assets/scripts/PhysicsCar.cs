@@ -12,6 +12,8 @@ public partial class PhysicsCar : VehicleBody3D
 	[Export] private float _brakeForce = 50.0f;
 	[Export] private float _handbrakeForce = 100.0f;
 
+	public float RPM {private set; get;} = 0.0f;
+
 	private List<VehicleWheel3D> _drivingWheels;
 	private List<VehicleWheel3D> _handbrakeWheels;
 
@@ -45,6 +47,7 @@ public partial class PhysicsCar : VehicleBody3D
 			wheel.Brake = 0f;
 			wheel.EngineForce = acceleration * _maxTorque * (1 - rpm / _maxRPM);
 		}
+		RPM = rpm; // this gives the wheel rpm, for now until we simulate engine rpms.
 	}
 
 	protected List<VehicleWheel3D> GetDrivingWheels() {
