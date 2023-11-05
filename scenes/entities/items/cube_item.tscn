@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dya5vn2gt6dij"]
+[gd_scene load_steps=5 format=3 uid="uid://dya5vn2gt6dij"]
 
-[ext_resource type="PackedScene" uid="uid://b7q4nw5lffgfl" path="res://scenes/entities/base_pile_item.tscn" id="1_4m0pu"]
+[ext_resource type="PackedScene" path="res://scenes/entities/base_pile_item.tscn" id="1_4m0pu"]
+[ext_resource type="Script" path="res://assets/scripts/BasePileItem.cs" id="2_k6r0q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_37fko"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wsdhl"]
 
 [node name="base_pile_item" instance=ExtResource("1_4m0pu")]
+script = ExtResource("2_k6r0q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_37fko")

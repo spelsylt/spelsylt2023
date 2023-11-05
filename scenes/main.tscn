@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d2fmw6unx854g" path="res://scenes/entities/CameraGimbal.tscn" id="1_00lnc"]
 [ext_resource type="PackedScene" uid="uid://ye6r1hyurkjw" path="res://scenes/entities/cars/car_fiat_panda.tscn" id="2_lltar"]
-[ext_resource type="PackedScene" path="res://scenes/entities/pile.tscn" id="3_mxyfb"]
+[ext_resource type="PackedScene" uid="uid://dyemq52f1fbki" path="res://scenes/entities/pile.tscn" id="3_mxyfb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dil4f"]
 
