@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5c1d5mx1y6ws"]
+[gd_scene load_steps=8 format=3 uid="uid://c5c1d5mx1y6ws"]
 
 [ext_resource type="PackedScene" uid="uid://d2fmw6unx854g" path="res://scenes/entities/CameraGimbal.tscn" id="1_00lnc"]
 [ext_resource type="PackedScene" uid="uid://ye6r1hyurkjw" path="res://scenes/entities/cars/car_fiat_panda.tscn" id="2_lltar"]
+[ext_resource type="PackedScene" uid="uid://cxet58jlvqjpw" path="res://scenes/entities/pile.tscn" id="3_mxyfb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dil4f"]
 
@@ -21,10 +22,15 @@ size = Vector3(5.365, 0.07, 6.21)
 transform = Transform3D(1, 0, 0, 0, 0.579537, 0.814946, 0, -0.814946, 0.579537, 1.08046, 8.01778, 3.34691)
 
 [node name="fiatPanda" parent="." node_paths=PackedStringArray("_playerCamera") instance=ExtResource("2_lltar")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0.0664655, 0.997789, 0, 0.997789, -0.0664655, -4.33065e-08, 0, 3.02855, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0.0664655, 0.997789, 0, 0.997789, -0.0664655, -4.33065e-08, 1.1356e-06, 4.65449, -26.1453)
 _acceleration = 10.0
 _maxTorque = 200.0
 _playerCamera = NodePath("../CameraGimbal")
+
+[node name="pile" parent="fiatPanda" instance=ExtResource("3_mxyfb")]
+transform = Transform3D(-4.37114e-08, 0, 1, -2.60209e-17, 1, 0, -1, 1.11022e-15, -4.37114e-08, -5.96046e-08, 1.23776, -0.740033)
+_accelerationToScoreFactor = 0.1
+_accelerationLimit = 20.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.988129, -0.153624, 0, 0.153624, 0.988129, 0, 0, 0)
@@ -39,7 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 0.999989, 0.00474727, 0, -0.00474727, 0.9999
 shape = SubResource("BoxShape3D_k3bvy")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.991971, 0.126459, 0, -0.126459, 0.991971, 0, -2.17731, -42.7349)
+transform = Transform3D(1, 0, 0, 0, 0.990268, 0.139173, 0, -0.139173, 0.990268, 0, -2.17731, -42.7349)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/StaticBody3D"]
 transform = Transform3D(34.8125, 0, 0, 0, 0.999973, 0.318833, 0, -0.00741757, 42.9823, 0, -0.783221, 0.00581741)
