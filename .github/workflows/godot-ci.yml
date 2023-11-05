@@ -29,6 +29,7 @@ jobs:
           add-apt-repository ppa:kisak/kisak-mesa
           apt update
           apt upgrade
+          echo "Installerat kisak-mesa"
           apt install -y mesa-utils
           glxinfo | grep "OpenGL version"
       - name: Windows Build
