@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5c1d5mx1y6ws"]
+[gd_scene load_steps=10 format=3 uid="uid://c5c1d5mx1y6ws"]
 
 [ext_resource type="PackedScene" uid="uid://d2fmw6unx854g" path="res://scenes/entities/CameraGimbal.tscn" id="1_00lnc"]
+[ext_resource type="PackedScene" uid="uid://hv7dab5vwxhu" path="res://scenes/UI/ui_car.tscn" id="1_b3eyv"]
 [ext_resource type="PackedScene" uid="uid://ye6r1hyurkjw" path="res://scenes/entities/cars/car_fiat_panda.tscn" id="2_lltar"]
 [ext_resource type="PackedScene" uid="uid://dyemq52f1fbki" path="res://scenes/entities/pile.tscn" id="3_mxyfb"]
 
@@ -9,12 +10,18 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_k3bvy"]
 size = Vector3(35.065, 0.725, 43.115)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_yy4se"]
+size = Vector3(34.015, 1.99, 368.03)
+
 [sub_resource type="BoxMesh" id="BoxMesh_581lj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ap3o5"]
 size = Vector3(5.365, 0.07, 6.21)
 
 [node name="Main" type="Node"]
+
+[node name="ui_car" parent="." node_paths=PackedStringArray("_car") instance=ExtResource("1_b3eyv")]
+_car = NodePath("../fiatPanda")
 
 [node name="CameraGimbal" parent="." instance=ExtResource("1_00lnc")]
 
@@ -48,13 +55,13 @@ shape = SubResource("BoxShape3D_k3bvy")
 transform = Transform3D(1, 0, 0, 0, 0.990268, 0.139173, 0, -0.139173, 0.990268, 0, -2.17731, -42.7349)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/StaticBody3D"]
-transform = Transform3D(34.8125, 0, 0, 0, 0.999973, 0.318833, 0, -0.00741757, 42.9823, 0, -0.783221, 0.00581741)
+transform = Transform3D(34.8125, 0, 0, 0, 1.05336, 2.68604, 0, -0.0078136, 362.109, 0.651203, -2.15432, -159.385)
 mesh = SubResource("BoxMesh_dil4f")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.496352, 1.14441e-05)
-shape = SubResource("BoxShape3D_k3bvy")
+transform = Transform3D(1, 0, 0, 0, 0.999962, 0.00867418, 0, -0.00867418, 0.999962, 0, -2.8692, -162.417)
+shape = SubResource("BoxShape3D_yy4se")
 
 [node name="Ramp" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.977153, 0.212536, 0, -0.212536, 0.977153, -6.51683, 1.2767, 2.13415)

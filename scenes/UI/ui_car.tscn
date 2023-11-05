@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://hv7dab5vwxhu"]
+
+[ext_resource type="Script" path="res://assets/scripts/ui/UICar.cs" id="1_qsps2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g7dqq"]
+font_size = 32
+
+[node name="ui_car" type="Control" node_paths=PackedStringArray("_speedLabel", "_rpmLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qsps2")
+_speedLabel = NodePath("Container/SpeedText")
+_rpmLabel = NodePath("Container/RPMText")
+
+[node name="Container" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -201.0
+offset_right = 270.0
+offset_bottom = -22.0
+grow_vertical = 0
+color = Color(0, 0, 0, 0.309804)
+
+[node name="SpeedText" type="Label" parent="Container"]
+layout_mode = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -169.0
+offset_right = 113.0
+offset_bottom = -121.0
+text = "Speed"
+label_settings = SubResource("LabelSettings_g7dqq")
+
+[node name="RPMText" type="Label" parent="Container"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -107.0
+offset_right = 115.0
+offset_bottom = -59.0
+grow_vertical = 0
+text = "RPM"
+label_settings = SubResource("LabelSettings_g7dqq")
