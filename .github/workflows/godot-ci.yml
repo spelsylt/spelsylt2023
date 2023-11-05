@@ -21,6 +21,13 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/templates/${GODOT_VERSION}.stable.mono
+      - name: Install OpenGL 3.3 Support
+        run: |
+          add-apt-repository ppa:kisak/kisak-mesa
+          apt update
+          apt upgrade
+          apt install mesa-utils
+          glxinfo | grep "OpenGL version"
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
