@@ -23,6 +23,8 @@ jobs:
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/templates/${GODOT_VERSION}.stable.mono
       - name: Install OpenGL 3.3 Support
         run: |
+          sudo apt install software-properties-common
+          sudo apt update
           sudo add-apt-repository ppa:kisak/kisak-mesa
           sudo apt update
           sudo apt upgrade
