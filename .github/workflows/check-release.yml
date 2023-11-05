@@ -1,10 +1,8 @@
 name: "Check Releases"
 on:
   schedule:
-    - cron: '27 23 * * *'
   push:
     branches:
-      - master
 jobs:
   fetch:
     name: Fetch Latest Godot Engine Release
