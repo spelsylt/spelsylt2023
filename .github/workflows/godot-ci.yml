@@ -24,11 +24,11 @@ jobs:
       - name: Install OpenGL 3.3 Support
         run: |
           apt update
+          apt upgrade
           apt install -y software-properties-common
           apt update
           add-apt-repository ppa:kisak/kisak-mesa
           apt update
-          apt upgrade
           echo "Installerat kisak-mesa"
           apt install -y mesa-utils
           glxinfo | grep "OpenGL version"
