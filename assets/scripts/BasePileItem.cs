@@ -44,6 +44,13 @@ public partial class BasePileItem : RigidBody3D
 		Freeze = false;
 		// TODO launch everything with a little bit of force in a random direction
 		_childItems.ForEach(x => x.ReleaseBranch());
+		if (_parent != null) {
+			_parent.RemoveFromChildren(this);
+		}
+	}
+
+	public void RemoveFromChildren(BasePileItem child) {
+		_childItems.Remove(child);
 	}
 
 	public List<BasePileItem> GetLeafs() {
