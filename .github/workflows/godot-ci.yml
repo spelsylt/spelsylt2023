@@ -25,11 +25,10 @@ jobs:
         run: |
           apt update
           apt upgrade
+          apt install -y gnupg
           apt install -y software-properties-common
-          apt update
           apt-key adv --keyserver keyserver.ubuntu.com --recv-keys  C2518248EEA14886
           add-apt-repository ppa:kisak/kisak-mesa
-          apt update
           echo "Installerat kisak-mesa"
           apt install -y mesa-utils
           glxinfo | grep "OpenGL version"
