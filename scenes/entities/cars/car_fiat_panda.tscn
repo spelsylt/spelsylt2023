@@ -280,3 +280,9 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.116154, 0)
 shape = SubResource("BoxShape3D_yxhas")
+
+[node name="RightFrontLight" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.999995, 0.00326367, 0, -0.00326367, -0.999995, -0.441083, -0.0560193, 1.75796)
+
+[node name="LeftFrontLight" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.999995, 0.00326367, 0, -0.00326367, -0.999995, 0.500733, -0.0560193, 1.75796)
