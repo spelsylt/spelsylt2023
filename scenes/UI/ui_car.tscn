@@ -5,7 +5,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_g7dqq"]
 font_size = 32
 
-[node name="ui_car" type="Control" node_paths=PackedStringArray("_speedLabel", "_rpmLabel")]
+[node name="ui_car" type="Control" node_paths=PackedStringArray("_speedLabel", "_rpmLabel", "_GearLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +15,7 @@ grow_vertical = 2
 script = ExtResource("1_qsps2")
 _speedLabel = NodePath("Container/SpeedText")
 _rpmLabel = NodePath("Container/RPMText")
+_GearLabel = NodePath("Container/Gear")
 
 [node name="Container" type="ColorRect" parent="."]
 layout_mode = 1
@@ -50,4 +51,18 @@ offset_right = 115.0
 offset_bottom = -59.0
 grow_vertical = 0
 text = "RPM"
+label_settings = SubResource("LabelSettings_g7dqq")
+
+[node name="Gear" type="Label" parent="Container"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -64.0
+offset_right = 115.0
+offset_bottom = -16.0
+grow_vertical = 0
+text = "Gear
+"
 label_settings = SubResource("LabelSettings_g7dqq")

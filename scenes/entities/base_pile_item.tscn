@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7q4nw5lffgfl"]
 
-[ext_resource type="Script" path="res://scenes/entities/BasePileItem.cs" id="1_fyn3x"]
+[ext_resource type="Script" path="res://assets/scripts/BasePileItem.cs" id="1_gaauo"]
 
 [node name="base_pile_item" type="RigidBody3D"]
-script = ExtResource("1_fyn3x")
+script = ExtResource("1_gaauo")
