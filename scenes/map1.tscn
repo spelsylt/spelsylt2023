@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://8xbabt0gi1ik"]
+[gd_scene load_steps=9 format=3 uid="uid://8xbabt0gi1ik"]
 
 [ext_resource type="PackedScene" uid="uid://hv7dab5vwxhu" path="res://scenes/UI/ui_car.tscn" id="1_blaqw"]
+[ext_resource type="Script" path="res://assets/scripts/GameMode.cs" id="1_cffku"]
 [ext_resource type="PackedScene" uid="uid://qpg3khgngnk6" path="res://scenes/entities/finish_line.tscn" id="1_chti6"]
 [ext_resource type="PackedScene" uid="uid://ye6r1hyurkjw" path="res://scenes/entities/cars/car_fiat_panda.tscn" id="2_vf8vm"]
 [ext_resource type="PackedScene" uid="uid://dyemq52f1fbki" path="res://scenes/entities/pile.tscn" id="3_1gnvd"]
@@ -12,7 +13,9 @@ size = Vector3(15.05, 0.135, 201.325)
 [sub_resource type="BoxShape3D" id="BoxShape3D_8qykq"]
 size = Vector3(15, 0.15, 200)
 
-[node name="map1" type="Node"]
+[node name="map1" type="Node" node_paths=PackedStringArray("_car")]
+script = ExtResource("1_cffku")
+_car = NodePath("fiatPanda")
 
 [node name="ui_car" parent="." node_paths=PackedStringArray("_car") instance=ExtResource("1_blaqw")]
 _car = NodePath("../fiatPanda")
@@ -41,3 +44,6 @@ _car = NodePath("..")
 
 [node name="CameraGimbal" parent="." instance=ExtResource("3_bv0be")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.64322, 3.00342, -93.3386)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.0283747, -0.343245, 0.938817, -0.0133909, 0.938981, 0.343709, -0.999508, -0.0223242, 0.022047, 30.5905, 12.6111, 0)
