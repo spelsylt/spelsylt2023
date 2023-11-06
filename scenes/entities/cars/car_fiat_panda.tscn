@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dv75uxxqjpovx" path="res://assets/models/cars/fiatPanda_MarkedTexture.png" id="3_wu1am"]
 
 [sub_resource type="Curve" id="Curve_ha62w"]
-_data = [Vector2(0, 0.105263), 0.0, 0.0, 0, 0, Vector2(0.779944, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.0111421, 0.147368), 0.0, 0.0, 0, 0, Vector2(0.779944, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7iv3"]
@@ -203,7 +203,7 @@ size = Vector3(1.47, 1.086, 3.35)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 mass = 1115.0
 script = ExtResource("1_bbmuc")
-_acceleration = 200.0
+_acceleration = 1.0
 _maxRPM = 7000.0
 _powerCruve = SubResource("Curve_ha62w")
 _maxTorque = 100.0

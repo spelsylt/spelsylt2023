@@ -50,7 +50,7 @@ public partial class PhysicsCar : VehicleBody3D
         Steering = Mathf.Lerp(Steering, Input.GetAxis("steer_right", "steer_left") * 0.4f, _steeringSpeed * (float)delta);
 		var inputThrottle = Input.GetAxis("brake_reverse", "accelerate");
 
-		CalculateRPM();
+		CalculateRPM(inputThrottle, (float) delta);
 		AutoGear(inputThrottle, (float) delta);
 		CalculateAndApplyEngineForce();
 
@@ -68,40 +68,40 @@ public partial class PhysicsCar : VehicleBody3D
 			_gearShiftTimer = Mathf.Max(0.0f, _gearShiftTimer - delta);
 			_clutchPosition = Mathf.Lerp(0.0f, 1.0f, 1.0f - _gearShiftTimer);
 		} else {
-			Brake = 0.0f;
 			if (LinearVelocity.Length() < 0.1f) {
-				if (inputThrottle < 0) {
+				if (inputThrottle < 0 && RPM >= 1000) {
 					_currentGear = -1;
-				} else if (inputThrottle > 0) {
+				} else if (inputThrottle > 0 && RPM >= 1000) {
 					_currentGear = 1;
 				} else if (inputThrottle == 0) {
 					_currentGear = 0;
 				}
 			} else {
-				if ((_currentGear < 0 && inputThrottle > 0) || (_currentGear > 0 && inputThrottle < 0)) {
-					Brake = _brakeForce;
-					_throttle = 0.0f;
-				}
-			}
-
-			var speed = LinearVelocity.Length() * 3.6;
-			if (_currentGear != -1) {
-				if (speed <= 25f) {
-					_currentGear = 1;
-				} else if (speed <= 30f) {
-					_currentGear = 2;
-				} else if (speed <= 60f) {
-					_currentGear = 3;
-				} else if (speed <= 80f) {
-					_currentGear = 4;
-				} else if (speed <= 169f) {
-					_currentGear = 5;
+				var speed = LinearVelocity.Length() * 3.6;
+				if (_currentGear != -1) {
+					if (speed <= 25f) {
+						_currentGear = 1;
+					} else if (speed <= 30f) {
+						_currentGear = 2;
+					} else if (speed <= 60f) {
+						_currentGear = 3;
+					} else if (speed <= 80f) {
+						_currentGear = 4;
+					} else if (speed <= 169f) {
+						_currentGear = 5;
+					}
 				}
 			}
 			if (_currentGear != currentGear) {
 				_gearShiftTimer = _gearShiftTime;
 				_clutchPosition = 0.0f;
 			}
+		}
+		if ((_currentGear < 0 && inputThrottle > 0) || (_currentGear > 0 && inputThrottle < 0)) {
+			Brake = _brakeForce;
+			_throttle = 0.0f;
+		} else {
+			Brake = 0.0f;
 		}
 	}
 
@@ -116,13 +116,25 @@ public partial class PhysicsCar : VehicleBody3D
 		}
 	}
 
-	private void CalculateRPM() {
-		if (_currentGear == 0) {
-			RPM = 0.0f;
-		}
+	private void CalculateRPM(float throttle, float delta) {
 		var speed = LinearVelocity.Length();
 		var wheelRotSpeed = 60f * speed / _wheelCircumference;
 		var driveShaftSpeed = wheelRotSpeed * _finalDriveRatio;
+
+		if (speed < 0.1f) {
+			if (throttle > 0.1f || throttle < -0.1f) {
+				RPM += delta * Mathf.Abs(throttle) * 1000f;
+			} else {
+				RPM -= delta;
+				if (RPM < 500) {
+					RPM = 500;
+				}
+			}
+			if (RPM > _maxRPM) {
+				RPM = _maxRPM;
+			}
+			return;
+		}
 		
 		if (_currentGear == -1) {
 			RPM = driveShaftSpeed * -_reverseGearRatio;
@@ -130,6 +142,9 @@ public partial class PhysicsCar : VehicleBody3D
 			RPM = driveShaftSpeed * _GearRatios[_currentGear - 1];
 		} else {
 			RPM = 0.0f;
+		}
+		if (RPM < 500) {
+			RPM = 500;
 		}
 	}
 
