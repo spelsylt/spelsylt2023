@@ -1,3 +1,43 @@
-[gd_scene format=3 uid="uid://8xbabt0gi1ik"]
+[gd_scene load_steps=8 format=3 uid="uid://8xbabt0gi1ik"]
 
-[node name="map1" type="Node3D"]
+[ext_resource type="PackedScene" uid="uid://hv7dab5vwxhu" path="res://scenes/UI/ui_car.tscn" id="1_blaqw"]
+[ext_resource type="PackedScene" uid="uid://qpg3khgngnk6" path="res://scenes/entities/finish_line.tscn" id="1_chti6"]
+[ext_resource type="PackedScene" uid="uid://ye6r1hyurkjw" path="res://scenes/entities/cars/car_fiat_panda.tscn" id="2_vf8vm"]
+[ext_resource type="PackedScene" uid="uid://dyemq52f1fbki" path="res://scenes/entities/pile.tscn" id="3_1gnvd"]
+[ext_resource type="PackedScene" uid="uid://d2fmw6unx854g" path="res://scenes/entities/CameraGimbal.tscn" id="3_bv0be"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g245h"]
+size = Vector3(15.05, 0.135, 201.325)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8qykq"]
+size = Vector3(15, 0.15, 200)
+
+[node name="map1" type="Node"]
+
+[node name="ui_car" parent="." node_paths=PackedStringArray("_car") instance=ExtResource("1_blaqw")]
+_car = NodePath("../fiatPanda")
+
+[node name="Road" type="Node3D" parent="."]
+
+[node name="RigidBody3D" type="StaticBody3D" parent="Road"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Road/RigidBody3D"]
+mesh = SubResource("BoxMesh_g245h")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Road/RigidBody3D"]
+shape = SubResource("BoxShape3D_8qykq")
+
+[node name="finish_line" parent="." instance=ExtResource("1_chti6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 91.3284)
+
+[node name="fiatPanda" parent="." node_paths=PackedStringArray("_playerCamera") instance=ExtResource("2_vf8vm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.629457, 0.771712, -97.3771)
+_playerCamera = NodePath("../CameraGimbal")
+
+[node name="pile" parent="fiatPanda" node_paths=PackedStringArray("_car") instance=ExtResource("3_1gnvd")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.25321, -0.700226)
+_car = NodePath("..")
+
+[node name="CameraGimbal" parent="." instance=ExtResource("3_bv0be")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.64322, 3.00342, -93.3386)

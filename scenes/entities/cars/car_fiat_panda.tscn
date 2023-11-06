@@ -203,7 +203,6 @@ size = Vector3(1.47, 1.086, 3.35)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 mass = 1115.0
 script = ExtResource("1_bbmuc")
-_acceleration = 1.0
 _maxRPM = 7000.0
 _powerCruve = SubResource("Curve_ha62w")
 _maxTorque = 100.0

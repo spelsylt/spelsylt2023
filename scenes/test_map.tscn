@@ -30,7 +30,6 @@ transform = Transform3D(1, 0, 0, 0, 0.579537, 0.814946, 0, -0.814946, 0.579537, 
 
 [node name="fiatPanda" parent="." node_paths=PackedStringArray("_playerCamera") instance=ExtResource("2_lltar")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0.0664655, 0.997789, 0, 0.997789, -0.0664655, -4.33065e-08, 1.1356e-06, 4.65449, -26.1453)
-_acceleration = 10.0
 _maxTorque = 200.0
 _playerCamera = NodePath("../CameraGimbal")
 
