@@ -125,7 +125,7 @@ public partial class PhysicsCar : VehicleBody3D
 			if (throttle > 0.1f || throttle < -0.1f) {
 				RPM += delta * Mathf.Abs(throttle) * 1000f;
 			} else {
-				RPM -= delta;
+				RPM -= delta * 1000f;
 				if (RPM < 500) {
 					RPM = 500;
 				}

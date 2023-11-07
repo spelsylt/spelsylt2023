@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwqaj4o8gdlu6"]
+
+[ext_resource type="Script" path="res://assets/scripts/GameMode.cs" id="1_cft4t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rta63"]
+font_size = 86
+
+[sub_resource type="LabelSettings" id="LabelSettings_u78tr"]
+font_size = 36
+
+[node name="game_mode" type="Node" node_paths=PackedStringArray("_CountdownText", "_TimeText", "_GoTextTimer")]
+script = ExtResource("1_cft4t")
+_CountdownText = NodePath("Control/321Go")
+_TimeText = NodePath("Control/Time")
+_GoTextTimer = NodePath("Control/321Go/Timer")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="321Go" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 523.0
+offset_top = 155.0
+offset_right = 664.87
+offset_bottom = 276.0
+text = "GO"
+label_settings = SubResource("LabelSettings_rta63")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Control/321Go"]
+one_shot = true
+
+[node name="Time" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 157.0
+offset_bottom = 64.0
+text = "00:00:00"
+label_settings = SubResource("LabelSettings_u78tr")
+
+[connection signal="timeout" from="Control/321Go/Timer" to="." method="HideGoText"]
