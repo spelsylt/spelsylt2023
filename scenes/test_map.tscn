@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5c1d5mx1y6ws"]
+[gd_scene load_steps=9 format=3 uid="uid://c5c1d5mx1y6ws"]
 
 [ext_resource type="PackedScene" uid="uid://d2fmw6unx854g" path="res://scenes/entities/CameraGimbal.tscn" id="1_00lnc"]
-[ext_resource type="PackedScene" uid="uid://hv7dab5vwxhu" path="res://scenes/UI/ui_car.tscn" id="1_b3eyv"]
 [ext_resource type="PackedScene" uid="uid://ye6r1hyurkjw" path="res://scenes/entities/cars/car_fiat_panda.tscn" id="2_lltar"]
 [ext_resource type="PackedScene" uid="uid://dyemq52f1fbki" path="res://scenes/entities/pile.tscn" id="3_mxyfb"]
 
@@ -19,9 +18,6 @@ size = Vector3(34.015, 1.99, 368.03)
 size = Vector3(5.365, 0.07, 6.21)
 
 [node name="Main" type="Node"]
-
-[node name="ui_car" parent="." node_paths=PackedStringArray("_car") instance=ExtResource("1_b3eyv")]
-_car = NodePath("../fiatPanda")
 
 [node name="CameraGimbal" parent="." instance=ExtResource("1_00lnc")]
 
