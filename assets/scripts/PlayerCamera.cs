@@ -27,8 +27,7 @@ public partial class PlayerCamera : Node3D
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseMotion) {
-			var mouseEvent = (InputEventMouseMotion) @event;
+        if (@event is InputEventMouseMotion mouseEvent) {
 			_outerGimbal.RotateObjectLocal(Vector3.Up, -mouseEvent.Relative.X * _RotationSpeed);
 			_innerGimbal.RotateObjectLocal(Vector3.Right, -mouseEvent.Relative.Y * _RotationSpeed);
 		}

@@ -45,6 +45,7 @@ public partial class GameMode : Node
 
 	public void EndGame() {
 		_gameRunning = false;
+		_car.Freeze = true;
 		// TODO handle end of game stuff
 	}
 

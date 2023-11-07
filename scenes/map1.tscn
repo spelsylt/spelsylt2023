@@ -32,7 +32,7 @@ shape = SubResource("BoxShape3D_8qykq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 91.3284)
 
 [node name="fiatPanda" parent="." node_paths=PackedStringArray("_playerCamera") instance=ExtResource("2_vf8vm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.629457, 0.771712, -97.3771)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.629457, 0.771712, -97.878)
 _playerCamera = NodePath("../CameraGimbal")
 
 [node name="pile" parent="fiatPanda" node_paths=PackedStringArray("_car") instance=ExtResource("3_1gnvd")]

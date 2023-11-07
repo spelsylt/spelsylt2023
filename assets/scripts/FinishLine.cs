@@ -21,7 +21,6 @@ public partial class FinishLine : Node3D
 		if (body is PhysicsCar car) {
 			GD.Print("Crossed the finish line!");
 			_ui.Show();
-			car.Freeze = true;
 			_gameMode.EndGame();
 		}
 	}
