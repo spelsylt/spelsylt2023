@@ -37,7 +37,7 @@ public partial class PhysicsCar : VehicleBody3D
     public override void _Ready()
     {
         base._Ready();
-		_playerCamera.target = this;
+		_playerCamera._car = this;
 		_drivingWheels = GetDrivingWheels();
 		_handbrakeWheels = GetHandbrakeWheels();
 
