@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://8xbabt0gi1ik"]
+[gd_scene load_steps=9 format=3 uid="uid://8xbabt0gi1ik"]
 
 [ext_resource type="PackedScene" uid="uid://qpg3khgngnk6" path="res://scenes/entities/finish_line.tscn" id="1_chti6"]
 [ext_resource type="PackedScene" uid="uid://bwqaj4o8gdlu6" path="res://scenes/entities/game_mode.tscn" id="1_qvsgy"]
@@ -12,12 +12,20 @@ size = Vector3(15.05, 0.135, 201.325)
 [sub_resource type="BoxShape3D" id="BoxShape3D_8qykq"]
 size = Vector3(15, 0.15, 200)
 
+[sub_resource type="Curve3D" id="Curve3D_nwk6m"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 32.0531, 0, 52.9079, -0.387303, 0, 0.80473, 0.387303, 0, -0.80473, 27.7881, 0, 3.92792, 16.3411, 0.00237656, 0.0191298, -16.3411, -0.00237656, -0.0191298, 1.68919, 0, -15.6985, 11.0412, 0, 4.20618, -11.0412, 0, -4.20618, -75.0153, 0, -33.1243, -0.296336, 0, 0.131705, 0.296336, 0, -0.131705, -122.917, 0, 32.8121, -4.35103, -0.00553131, 7.5386, 4.35103, 0.00553131, -7.5386, -89.6439, 0, 76.3886, 8.54516, -0.00527191, 5.40871, -8.54516, 0.00527191, -5.40871, -58.4887, 0, 42.7078, -8.11563, 0, 28.0183, 8.11563, 0, -28.0183, -87.7568, 0, 16.8871, -22.6833, -0.000984192, 4.25997, 22.6833, 0.000984192, -4.25997, -48.4743, 0, -6.29082, 0, 0, 0, 0, 0, 0, -6.62881, 0, 40.2042),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 10
+
 [node name="map1" type="Node"]
 
 [node name="game_mode" parent="." node_paths=PackedStringArray("_car") instance=ExtResource("1_qvsgy")]
 _car = NodePath("../fiatPanda")
 
 [node name="Road" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.3118, 0, 0)
 
 [node name="RigidBody3D" type="StaticBody3D" parent="Road"]
 
@@ -28,11 +36,12 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Road/RigidBody3D"]
 shape = SubResource("BoxShape3D_8qykq")
 
-[node name="finish_line" parent="." instance=ExtResource("1_chti6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 91.3284)
+[node name="finish_line" parent="." node_paths=PackedStringArray("_gameMode") instance=ExtResource("1_chti6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.3118, 0, 91.3284)
+_gameMode = NodePath("../game_mode")
 
 [node name="fiatPanda" parent="." node_paths=PackedStringArray("_playerCamera") instance=ExtResource("2_vf8vm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.629457, 0.771712, -97.878)
+transform = Transform3D(-0.980945, 0, -0.194286, 0, 1, 0, 0.194286, 0, -0.980945, 39.669, 0.889126, 40.7198)
 _playerCamera = NodePath("../CameraGimbal")
 
 [node name="pile" parent="fiatPanda" node_paths=PackedStringArray("_car") instance=ExtResource("3_1gnvd")]
@@ -44,3 +53,21 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.6432
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.0283747, -0.343245, 0.938817, -0.0133909, 0.938981, 0.343709, -0.999508, -0.0223242, 0.022047, 30.5905, 12.6111, 0)
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_nwk6m")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122694, 0.0569341, -0.0153595)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 0.1, 15, 0.1, 15, 0)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
