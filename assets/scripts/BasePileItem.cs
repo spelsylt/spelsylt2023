@@ -9,7 +9,7 @@ public partial class BasePileItem : RigidBody3D
 	private List<BasePileItem>  _childItems;
 	private BasePileItem _parent;
 	private Vector3? _originalPosition;
-	
+	[Export] private float _linearMomentOfInertia = 40.0f;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -34,8 +34,15 @@ public partial class BasePileItem : RigidBody3D
 	public override void _PhysicsProcess(double delta)
 	{
 		if (Freeze == true) {
-			var lean = _car.LinearVelocity.Length() * _car.AngularVelocity;
-			float sideLean = -lean.Y * 0.01f;
+			float velocity = _car.LinearVelocity.Length();
+			float turningRadius = velocity / _car.AngularVelocity.Y;
+			
+			// Centrifugal force = mass * v^2 / r
+			float force = Mass*velocity*velocity / turningRadius;
+
+			// Linear relasionship between force and lean gives a cartoonish feel
+			float sideLean = -force / _linearMomentOfInertia;
+
 			Rotation = new Vector3(sideLean, 0.0f, 0.0f);
 			Position = (Vector3)_originalPosition + new Vector3(0.0f, 0.0f, sideLean);
 		}
