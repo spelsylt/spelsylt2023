@@ -33,9 +33,10 @@ public partial class BasePileItem : RigidBody3D
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		if (Freeze == true) {
-			float velocity = _car.LinearVelocity.Length();
-			float turningRadius = velocity / _car.AngularVelocity.Y;
+        float angularVelocity = _car.AngularVelocity.Y;
+		if (Freeze == true && angularVelocity > 0.0f) {
+            float velocity = _car.LinearVelocity.Length();
+			float turningRadius = velocity / angularVelocity;
 			
 			// Centrifugal force = mass * v^2 / r
 			float force = Mass*velocity*velocity / turningRadius;
