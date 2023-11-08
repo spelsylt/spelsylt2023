@@ -26,6 +26,8 @@ public partial class Pile : Node3D
 		_car.Mass += _pileItems.Sum(x => x.GetValueOfBranch());
 		_pileItems.ForEach(x => x.FreezeBranch());
 		// TODO can we adjust the car collider to cover all the items for some cheap easy collision?
+		
+		_pileItems.ForEach(x => x.setCar(_car));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
