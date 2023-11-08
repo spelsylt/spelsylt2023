@@ -34,7 +34,7 @@ public partial class BasePileItem : RigidBody3D
 	public override void _PhysicsProcess(double delta)
 	{
         float angularVelocity = _car.AngularVelocity.Y;
-		if (Freeze == true && angularVelocity > 0.0f) {
+		if (Freeze == true && Math.Abs(angularVelocity) > 0.0f) {
             float velocity = _car.LinearVelocity.Length();
 			float turningRadius = velocity / angularVelocity;
 			
