@@ -155,7 +155,7 @@ public partial class PhysicsCar : VehicleBody3D
 		if (_currentGear == -1) {
 			EngineForce = _clutchPosition * _throttle * powerFactor * _reverseGearRatio * _finalDriveRatio * _maxEngineForce;
 		} else if (_currentGear > 0 && _currentGear <= _GearRatios.Count()) {
-			EngineForce =  _clutchPosition * _throttle * powerFactor * _GearRatios[_currentGear] * _finalDriveRatio * _maxEngineForce;
+			EngineForce =  _clutchPosition * _throttle * powerFactor * _GearRatios[_currentGear - 1] * _finalDriveRatio * _maxEngineForce;
 		} else {
 			EngineForce = 0.0f;
 		}
