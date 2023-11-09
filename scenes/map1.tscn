@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://8xbabt0gi1ik"]
+[gd_scene load_steps=11 format=3 uid="uid://8xbabt0gi1ik"]
 
 [ext_resource type="PackedScene" uid="uid://qpg3khgngnk6" path="res://scenes/entities/finish_line.tscn" id="1_chti6"]
 [ext_resource type="PackedScene" uid="uid://bwqaj4o8gdlu6" path="res://scenes/entities/game_mode.tscn" id="1_qvsgy"]
 [ext_resource type="PackedScene" uid="uid://ye6r1hyurkjw" path="res://scenes/entities/cars/car_fiat_panda.tscn" id="2_vf8vm"]
 [ext_resource type="PackedScene" uid="uid://dyemq52f1fbki" path="res://scenes/entities/pile.tscn" id="3_1gnvd"]
 [ext_resource type="PackedScene" uid="uid://d2fmw6unx854g" path="res://scenes/entities/CameraGimbal.tscn" id="3_bv0be"]
+[ext_resource type="Texture2D" uid="uid://cqs7u5bclw2db" path="res://assets/materials/road.png" id="6_q6rrw"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g245h"]
 size = Vector3(15.05, 0.135, 201.325)
@@ -18,6 +19,11 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 10
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6j3vs"]
+albedo_texture = ExtResource("6_q6rrw")
+uv1_scale = Vector3(0.045, 8.02, 0.475)
+texture_filter = 4
 
 [node name="map1" type="Node"]
 
@@ -101,3 +107,4 @@ path_local = false
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
+material = SubResource("StandardMaterial3D_6j3vs")
