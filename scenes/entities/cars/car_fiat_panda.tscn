@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://hv7dab5vwxhu" path="res://scenes/UI/ui_car.tscn" id="4_52oan"]
 
 [sub_resource type="Curve" id="Curve_ha62w"]
-_data = [Vector2(0, 0.0631579), 0.0, 0.0, 0, 0, Vector2(0.779944, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.0421052), 0.0, 0.0, 0, 0, Vector2(0.779944, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7iv3"]

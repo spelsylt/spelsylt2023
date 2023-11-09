@@ -79,7 +79,7 @@ public partial class PhysicsCar : VehicleBody3D
 			} else {
 				var speed = LinearVelocity.Length() * 3.6;
 				if (_currentGear != -1) {
-					if (speed <= 25f) {
+					if (speed <= 15f) {
 						_currentGear = 1;
 					} else if (speed <= 30f) {
 						_currentGear = 2;
