@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://8xbabt0gi1ik"]
+[gd_scene load_steps=13 format=3 uid="uid://8xbabt0gi1ik"]
 
 [ext_resource type="PackedScene" uid="uid://qpg3khgngnk6" path="res://scenes/entities/finish_line.tscn" id="1_chti6"]
 [ext_resource type="PackedScene" uid="uid://bwqaj4o8gdlu6" path="res://scenes/entities/game_mode.tscn" id="1_qvsgy"]
@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dyemq52f1fbki" path="res://scenes/entities/pile.tscn" id="3_1gnvd"]
 [ext_resource type="PackedScene" uid="uid://d2fmw6unx854g" path="res://scenes/entities/CameraGimbal.tscn" id="3_bv0be"]
 [ext_resource type="Texture2D" uid="uid://cqs7u5bclw2db" path="res://assets/materials/road.png" id="6_q6rrw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x2gbv"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_buved"]
+size = Vector3(1000, 0.025, 1000)
 
 [sub_resource type="BoxMesh" id="BoxMesh_g245h"]
 size = Vector3(15.05, 0.135, 201.325)
@@ -26,6 +32,15 @@ uv1_scale = Vector3(0.045, 8.02, 0.475)
 texture_filter = 4
 
 [node name="map1" type="Node"]
+
+[node name="WorldPlane" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldPlane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.305096, 0)
+mesh = SubResource("PlaneMesh_x2gbv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldPlane"]
+shape = SubResource("BoxShape3D_buved")
 
 [node name="game_mode" parent="." node_paths=PackedStringArray("_car") instance=ExtResource("1_qvsgy")]
 _car = NodePath("../fiatPanda")
