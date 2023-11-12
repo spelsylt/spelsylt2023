@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://8xbabt0gi1ik"]
+[gd_scene load_steps=16 format=3 uid="uid://8xbabt0gi1ik"]
 
 [ext_resource type="PackedScene" uid="uid://qpg3khgngnk6" path="res://scenes/entities/finish_line.tscn" id="1_chti6"]
 [ext_resource type="PackedScene" uid="uid://dimssf7ov7xra" path="res://scenes/static/trees/tree_01.tscn" id="1_ee2qu"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dyemq52f1fbki" path="res://scenes/entities/pile.tscn" id="3_1gnvd"]
 [ext_resource type="PackedScene" uid="uid://d2fmw6unx854g" path="res://scenes/entities/CameraGimbal.tscn" id="3_bv0be"]
 [ext_resource type="Texture2D" uid="uid://cqs7u5bclw2db" path="res://assets/materials/road.png" id="6_q6rrw"]
+[ext_resource type="PackedScene" uid="uid://gx84viufbxyp" path="res://scenes/entities/cars/AI_fiat_panda.tscn" id="8_kjeox"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_x2gbv"]
 size = Vector2(1000, 1000)
@@ -31,6 +32,13 @@ point_count = 10
 albedo_texture = ExtResource("6_q6rrw")
 uv1_scale = Vector3(0.045, 8.02, 0.475)
 texture_filter = 4
+
+[sub_resource type="Curve3D" id="Curve3D_7obkk"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -14.2637, 0, 33.5294, 0, 0, 0, 0, 0, 0, -28.8466, 0, 7.813, 0, 0, 0, 0, 0, 0, -38.5476, 0, -0.124184, 0, 0, 0, 0, 0, 0, -49.5715, 0, -1.888, 0, 0, 0, 0, 0, 0, -62.8001, 0, -0.56514, 0, 0, 0, 0, 0, 0, -75.5878, 0, 1.86011, 0, 0, 0, 0, 0, 0, -79.9973, 0, 7.813, 0, 0, 0, 0, 0, 0, -84.1864, 0, 17.7345, 0, 0, 0, 0, 0, 0, -84.4069, 0, 26.7741, 0, 0, 0, 0, 0, 0, -82.4226, 0, 32.0655, 0, 0, 0, 0, 0, 0, -76.4697, 0, 34.7112, 0, 0, 0, 0, 0, 0, -64.123, 0, 36.2546, 0, 0, 0, 0, 0, 0, -55.3039, 0, 39.3413, 0, 0, 0, 0, 0, 0, -53.54, 0, 46.8375, 0, 0, 0, 0, 0, 0, -57.2882, 0, 53.2313, 0, 0, 0, 0, 0, 0, -62.8001, 0, 58.0819, 0, 0, 0, 0, 0, 0, -70.7373, 0, 64.6962, 0, 0, 0, 0, 0, 0, -78.013, 0, 72.4129, 0, 0, 0, 0, 0, 0, -84.8478, 0, 77.4839, 0, 0, 0, 0, 0, 0, -91.9031, 0, 81.0115, 0, 0, 0, 0, 0, 0, -98.297, 0, 77.9248, 0, 0, 0, 0, 0, 0, -107.116, 0, 66.2395, 0, 0, 0, 0, 0, 0, -119.683, 0, 45.7351, 0, 0, 0, 0, 0, 0, -125.416, 0, 35.1522, 0, 0, 0, 0, 0, 0, -124.975, 0, 24.5693, 0, 0, 0, 0, 0, 0, -113.069, 0, 5.60823, 0, 0, 0, 0, 0, 0, -86.4921, 0, -32.9963, 0, 0, 0, 0, 0, 0, -79.7906, 0, -37.5816, 0, 0, 0, 0, 0, 0, -68.272, 0, -35.618, 0, 0, 0, 0, 0, 0, -51.1177, 0, -30.2267, 0, 0, 0, 0, 0, 0, -29.8791, 0, -25.3255, 0, 0, 0, 0, 0, 0, -9.78418, 0, -20.9144, 0, 0, 0, 0, 0, 0, 0.671727, 0, -20.0975, 0, 0, 0, 0, 0, 0, 11.1277, 0, -17.4836, 0, 0, 0, 0, 0, 0, 20.6033, 0, -13.2358, 0, 0, 0, 0, 0, 0, 25.8313, 0, -7.19101, 0, 0, 0, 0, 0, 0, 30.079, 0, -1.63631, 0, 0, 0, 0, 0, 0, 32.3662, 0, 6.04226, 0, 0, 0, 0, 0, 0, 33.6732, 0, 16.4982, 0, 0, 0, 0, 0, 0, 34.2473, 0, 23.823, 0, 0, 0, 0, 0, 0, 34.7374, 0, 32.6451, 0, 0, 0, 0, 0, 0, 34.9008, 0, 39.3435, 0, 0, 0, 0, 0, 0, 35.3909, 0, 45.3883, 0, 0, 0, 0, 0, 0, 36.3711, 0, 50.2895, 0, 0, 0, 0, 0, 0, 37.0246, 0, 56.3343),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 45
 
 [node name="map1" type="Node"]
 
@@ -148,3 +156,10 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 material = SubResource("StandardMaterial3D_6j3vs")
+
+[node name="AICar" parent="." instance=ExtResource("8_kjeox")]
+transform = Transform3D(0.999582, 0, 0.0288985, 0, 1, 0, -0.0288985, 0, 0.999582, -12.7997, 0.901548, 36.3417)
+_PatrolPath = NodePath("../AICarPathOpposing")
+
+[node name="AICarPathOpposing" type="Path3D" parent="."]
+curve = SubResource("Curve3D_7obkk")
