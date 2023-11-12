@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://8xbabt0gi1ik"]
+[gd_scene load_steps=14 format=3 uid="uid://8xbabt0gi1ik"]
 
 [ext_resource type="PackedScene" uid="uid://qpg3khgngnk6" path="res://scenes/entities/finish_line.tscn" id="1_chti6"]
+[ext_resource type="PackedScene" uid="uid://dimssf7ov7xra" path="res://scenes/static/trees/tree_01.tscn" id="1_ee2qu"]
 [ext_resource type="PackedScene" uid="uid://bwqaj4o8gdlu6" path="res://scenes/entities/game_mode.tscn" id="1_qvsgy"]
 [ext_resource type="PackedScene" uid="uid://ye6r1hyurkjw" path="res://scenes/entities/cars/car_fiat_panda.tscn" id="2_vf8vm"]
 [ext_resource type="PackedScene" uid="uid://dyemq52f1fbki" path="res://scenes/entities/pile.tscn" id="3_1gnvd"]
@@ -41,6 +42,30 @@ mesh = SubResource("PlaneMesh_x2gbv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WorldPlane"]
 shape = SubResource("BoxShape3D_buved")
+
+[node name="tree01" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7833, 0.0124998, 44.1373)
+
+[node name="tree02" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7833, 0.0124998, 39.1954)
+
+[node name="tree03" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7833, 0.0124998, 34.3647)
+
+[node name="tree04" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7833, 0.0124998, 29.4228)
+
+[node name="tree05" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9304, 0.0124998, 44.1373)
+
+[node name="tree06" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9304, 0.0124998, 39.1954)
+
+[node name="tree07" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9304, 0.0124998, 34.3647)
+
+[node name="tree08" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9304, 0.0124998, 29.4228)
 
 [node name="game_mode" parent="." node_paths=PackedStringArray("_car") instance=ExtResource("1_qvsgy")]
 _car = NodePath("../fiatPanda")
