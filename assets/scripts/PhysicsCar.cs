@@ -83,19 +83,7 @@ public partial class PhysicsCar : VehicleBody3D
 				}
 			} else {
 				var speed = LinearVelocity.Length() * 3.6;
-				if (_currentGear != -1) {
-					if (speed <= 15f) {
-						_currentGear = 1;
-					} else if (speed <= 30f) {
-						_currentGear = 2;
-					} else if (speed <= 60f) {
-						_currentGear = 3;
-					} else if (speed <= 80f) {
-						_currentGear = 4;
-					} else if (speed <= 169f) {
-						_currentGear = 5;
-					}
-				}
+				SwitchGear(speed);
 			}
 			if (_currentGear != currentGear) {
 				_gearShiftTimer = _gearShiftTime;
@@ -110,14 +98,35 @@ public partial class PhysicsCar : VehicleBody3D
 		}
 	}
 
-	private void ApplyAcceleration(VehicleWheel3D wheel, float acceleration) {
-		var rpm = Mathf.Abs(wheel.GetRpm());
-		if ((acceleration < 0 && wheel.GetRpm() > 0) || acceleration > 0 && wheel.GetRpm() < 0) {
-			wheel.Brake = _brakeForce;
-			wheel.EngineForce = 0f;
-		} else {
-			wheel.Brake = 0f;
-			wheel.EngineForce = acceleration * _maxTorque * (1 - rpm / _maxRPM);
+	private void SwitchGear(double speed) {
+		if (_currentGear != -1) {
+			if (_currentGear == 1) {
+				if (speed >= 15) {
+					_currentGear++;
+				}
+			} else if (_currentGear == 2) {
+				if (speed <= 10) {
+					_currentGear--;
+				} else if (speed >= 30) {
+					_currentGear++;
+				}
+			} else if (_currentGear == 3) {
+				if (speed <= 25) {
+					_currentGear--;
+				} else if (speed >= 50) {
+					_currentGear++;
+				}
+			} else if (_currentGear == 4) {
+				if (speed <= 45) {
+					_currentGear--;
+				} else if (speed >= 70) {
+					_currentGear++;
+				}
+			} else if (_currentGear == 5) {
+				if (speed <= 65) {
+					_currentGear--;
+				}
+			}
 		}
 	}
 
