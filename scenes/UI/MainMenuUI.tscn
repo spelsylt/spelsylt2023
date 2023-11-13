@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://38xm0mprjfcl"]
+
+[ext_resource type="PackedScene" uid="uid://vsktfyb6cdxl" path="res://scenes/UI/SettingsUI.tscn" id="1_o3aj3"]
+[ext_resource type="Script" path="res://assets/scripts/ui/MainMenuUI.cs" id="1_o5168"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_on10j"]
+font_size = 91
+
+[node name="MainMenuUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="." node_paths=PackedStringArray("_settingsUI")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -50.0
+offset_right = 216.745
+offset_bottom = 51.0
+grow_vertical = 2
+vertical = true
+script = ExtResource("1_o5168")
+_settingsUI = NodePath("../SettingsUI")
+
+[node name="StartButton" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "CAR GAME"
+label_settings = SubResource("LabelSettings_on10j")
+
+[node name="SettingsUI" parent="." node_paths=PackedStringArray("_MainMenu") instance=ExtResource("1_o3aj3")]
+visible = false
+layout_mode = 1
+_MainMenu = NodePath("../BoxContainer")
+
+[connection signal="pressed" from="BoxContainer/StartButton" to="BoxContainer" method="OnClickStart"]
+[connection signal="pressed" from="BoxContainer/SettingsButton" to="BoxContainer" method="OnClickSettings"]
+[connection signal="pressed" from="BoxContainer/QuitButton" to="BoxContainer" method="OnClickQuit"]
