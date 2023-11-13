@@ -1,0 +1,38 @@
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://bhitiqumrek6h"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_nqc31"]
+resource_name = "Reverb"
+room_size = 1.0
+damping = 1.0
+hipass = 0.1
+wet = 0.01
+
+[sub_resource type="AudioEffectEQ" id="AudioEffectEQ_l7uuv"]
+resource_name = "EQ"
+band_db/1000_hz = -23.8
+band_db/3200_hz = -31.4
+band_db/10000_hz = -45.0
+
+[resource]
+bus/1/name = &"Env"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectReverb_nqc31")
+bus/1/effect/0/enabled = true
+bus/2/name = &"Car"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Env"
+bus/3/name = &"CarEngine"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = -2.51248
+bus/3/send = &"Car"
+bus/3/effect/0/effect = SubResource("AudioEffectEQ_l7uuv")
+bus/3/effect/0/enabled = true
