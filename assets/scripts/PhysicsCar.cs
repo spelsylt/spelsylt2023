@@ -32,6 +32,8 @@ public partial class PhysicsCar : VehicleBody3D
 	private float _gearShiftTime = 0.3f;
 	private float _gearShiftTimer = 0.0f;
 
+	private bool _disabled = false;
+
 	public int Gear {get {return _currentGear;} private set {}}
 
     public override void _Ready()
@@ -47,6 +49,9 @@ public partial class PhysicsCar : VehicleBody3D
 
     public override void _PhysicsProcess(double delta)
     {
+		if (_disabled) {
+			return;
+		}
         Steering = Mathf.Lerp(Steering, Input.GetAxis("steer_right", "steer_left") * 0.4f, _steeringSpeed * (float)delta);
 		var inputThrottle = Input.GetAxis("brake_reverse", "accelerate");
 
@@ -159,6 +164,19 @@ public partial class PhysicsCar : VehicleBody3D
 		} else {
 			EngineForce = 0.0f;
 		}
+	}
+
+	public void Disable() {
+		Freeze = false;
+		_disabled = true;
+	}
+
+	public bool IsDisabled() {
+		return _disabled;
+	}
+
+	public float GetIsAnyWheelSkidding() {
+		return _drivingWheels.Max(x => x.GetSkidinfo());
 	}
 
 	protected List<VehicleWheel3D> GetDrivingWheels() {

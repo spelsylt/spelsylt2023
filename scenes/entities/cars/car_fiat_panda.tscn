@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ye6r1hyurkjw"]
+[gd_scene load_steps=26 format=3 uid="uid://ye6r1hyurkjw"]
 
 [ext_resource type="Script" path="res://assets/scripts/PhysicsCar.cs" id="1_bbmuc"]
 [ext_resource type="Texture2D" uid="uid://b0kp64iqbuwc7" path="res://assets/models/cars/fiatPanda_MarkedTexture_1.png" id="2_ac76x"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://hv7dab5vwxhu" path="res://scenes/UI/ui_car.tscn" id="4_52oan"]
 [ext_resource type="Script" path="res://assets/scripts/CarSounds.cs" id="5_vem15"]
 [ext_resource type="AudioStream" uid="uid://bk7h4q574i4c4" path="res://assets/sounds/engine.mp3" id="6_3waqh"]
+[ext_resource type="AudioStream" uid="uid://dvb4n0mhqge1b" path="res://assets/sounds/skidsounds/skid_sounds.tres" id="8_1fixc"]
 
 [sub_resource type="Curve" id="Curve_ha62w"]
 _data = [Vector2(0, 0.0421052), 0.0, 0.0, 0, 0, Vector2(0.779944, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -323,3 +324,7 @@ volume_db = -19.067
 unit_size = 100.0
 autoplay = true
 bus = &"CarEngine"
+
+[node name="Skidsounds" type="AudioStreamPlayer2D" parent="CarSounds"]
+stream = ExtResource("8_1fixc")
+bus = &"Car"

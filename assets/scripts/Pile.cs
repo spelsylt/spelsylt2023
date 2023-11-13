@@ -34,6 +34,9 @@ public partial class Pile : Node3D
 	public override void _PhysicsProcess(double delta)
 	{
 		// TODO take angular velocity into account?
+		if (_car.IsDisabled()) {
+			return;
+		}
 		var velocity = _car.LinearVelocity;
 		if (_lastVelocity != null) {
 			float acceleration = ((velocity - (Vector3)_lastVelocity) / (float) delta).Length();
@@ -68,6 +71,10 @@ public partial class Pile : Node3D
 			itemBranchToLose.ReleaseBranch();
 			if (itemBranchToLose.GetParentItem() == null) {
 				_pileItems.Remove(itemBranchToLose);
+				var pos = GlobalPosition;
+				RemoveChild(itemBranchToLose);
+				GetTree().Root.AddChild(itemBranchToLose);
+				itemBranchToLose.GlobalPosition = pos;
 			}
 			_car.Mass -= valLoss;
 		}

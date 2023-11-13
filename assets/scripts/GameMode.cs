@@ -11,11 +11,14 @@ public partial class GameMode : Node
 	[Export] private Label _CountdownText;
 	[Export] private Label _TimeText;
 
+	[Export] private PackedScene _endScene;
+
 	[Export] private Timer _GoTextTimer;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_car.Freeze = true;
+		Global.Instance.Reset();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,7 +49,11 @@ public partial class GameMode : Node
 	public void EndGame() {
 		_gameRunning = false;
 		_car.Freeze = true;
-		// TODO handle end of game stuff
+		// TODO delay
+		Global.Instance.GameScore = new PlayerScore(_gameTimer);
+		Global.Instance.Car = _car;
+		_car.GetParent().RemoveChild(_car);
+		GetTree().ChangeSceneToPacked(_endScene);
 	}
 
 	public void HideGoText() {

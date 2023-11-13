@@ -17,6 +17,11 @@ public partial class UICar : Control
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (_car.IsDisabled()) {
+			// TODO point directily to the UI container so this doesnt break if we change stuff
+			_speedLabel.GetParent<ColorRect>()?.Hide();
+			return;
+		}
 		var speed = _car.LinearVelocity.Length() * 3.6f; // Multiply by 3.6 to convert m/s to Km/h
 		_speedLabel.Text = (int) Mathf.Floor(speed) + " Km/h";
 		_rpmLabel.Text = "RPM:" + Mathf.Floor(_car.RPM);

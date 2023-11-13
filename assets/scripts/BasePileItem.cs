@@ -74,12 +74,15 @@ public partial class BasePileItem : RigidBody3D
 		// TODO launch everything with a little bit of force in a random direction
 		_childItems.ForEach(x => x.ReleaseBranch());
 		if (_parent != null) {
-			_parent.RemoveFromChildren(this);
+			var pos = GlobalPosition;
+			var tree = GetTree();
+			_parent.RemoveChild(this);
+			tree.Root.AddChild(this);
+			GlobalPosition = pos;
+			ApplyForce(new Vector3(GD.Randf(), GD.Randf(), GD.Randf()) * 100f * GD.Randf());
 		}
-	}
-
-	public void RemoveFromChildren(BasePileItem child) {
-		_childItems.Remove(child);
+		// recalc child items
+		_childItems = GetChildren().Where(x => x is BasePileItem).Cast<BasePileItem>().ToList();
 	}
 
 	public List<BasePileItem> GetLeafs() {
