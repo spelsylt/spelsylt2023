@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://8xbabt0gi1ik"]
+[gd_scene load_steps=17 format=3 uid="uid://8xbabt0gi1ik"]
 
+[ext_resource type="Material" uid="uid://brqh7oftdu7wx" path="res://assets/materials/env/m_grass01.tres" id="1_6oynk"]
 [ext_resource type="PackedScene" uid="uid://qpg3khgngnk6" path="res://scenes/entities/finish_line.tscn" id="1_chti6"]
 [ext_resource type="PackedScene" uid="uid://dimssf7ov7xra" path="res://scenes/static/trees/tree_01.tscn" id="1_ee2qu"]
 [ext_resource type="PackedScene" uid="uid://bwqaj4o8gdlu6" path="res://scenes/entities/game_mode.tscn" id="1_qvsgy"]
@@ -38,6 +39,7 @@ point_count = 45
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WorldPlane"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.305096, 0)
+material_override = ExtResource("1_6oynk")
 mesh = SubResource("PlaneMesh_x2gbv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WorldPlane"]
@@ -77,6 +79,7 @@ _gameMode = NodePath("../game_mode")
 
 [node name="fiatPanda" parent="." node_paths=PackedStringArray("_playerCamera") instance=ExtResource("2_vf8vm")]
 transform = Transform3D(-0.980945, 0, -0.194286, 0, 1, 0, 0.194286, 0, -0.980945, 39.669, 0.889126, 40.7198)
+_acceleration = 11.0
 _playerCamera = NodePath("../CameraGimbal")
 
 [node name="pile" parent="fiatPanda" node_paths=PackedStringArray("_car") instance=ExtResource("3_1gnvd")]
