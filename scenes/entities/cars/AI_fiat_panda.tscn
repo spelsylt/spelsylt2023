@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://gx84viufbxyp"]
+[gd_scene load_steps=20 format=3 uid="uid://gx84viufbxyp"]
 
 [ext_resource type="Texture2D" uid="uid://dv75uxxqjpovx" path="res://assets/models/cars/fiatPanda_MarkedTexture.png" id="1_4we0o"]
 [ext_resource type="Script" path="res://assets/scripts/AICar.cs" id="1_7ojcu"]
@@ -195,6 +195,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8aqpk")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_je3n4"]
+size = Vector3(1.52499, 1.12467, 3.48697)
+
 [node name="fiatPanda" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.553671, 0)
 script = ExtResource("1_7ojcu")
@@ -227,3 +230,11 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0.571581, -0.474, 1.11047)
 mesh = SubResource("ArrayMesh_efsv4")
 skeleton = NodePath("")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.153489, 0)
+shape = SubResource("BoxShape3D_je3n4")
+
+[connection signal="body_entered" from="Area3D" to="." method="OnCollide"]

@@ -8,6 +8,7 @@ public partial class AICar : CharacterBody3D
 	[Export] private NodePath _PatrolPath;
 	private Vector3[] _patrolPoints;
 	private int _patrolIndex = 0;
+	private bool _active = true;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -20,7 +21,7 @@ public partial class AICar : CharacterBody3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		if (_patrolPoints == null) {
+		if (_patrolPoints == null || !_active) {
 			return;
 		}
 
@@ -33,5 +34,21 @@ public partial class AICar : CharacterBody3D
 		Velocity = (targetFlat - Position).Normalized() * _speed * 3.6f * (float) delta;
 		LookAt(targetFlat, Vector3.Up);
 		MoveAndSlide();
+	}
+
+	public void Activate() {
+		_active = true;
+	}
+
+	public void Disable()  {
+		_active = false;
+	}
+
+	public void OnCollide(Node3D body) {
+		if (body is PhysicsCar) {
+			Disable();
+			// despawn after a min?
+			// todo honk the horn
+		}
 	}
 }

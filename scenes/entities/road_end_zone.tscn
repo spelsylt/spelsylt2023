@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgl3rnlaptvwe"]
+
+[ext_resource type="Script" path="res://assets/scripts/RoadEndZone.cs" id="1_p3van"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fo8dx"]
+size = Vector3(15, 1.075, 1)
+
+[node name="road_end_zone" type="Area3D"]
+script = ExtResource("1_p3van")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.585883, 0)
+shape = SubResource("BoxShape3D_fo8dx")
+
+[connection signal="body_entered" from="." to="." method="OnEnter"]

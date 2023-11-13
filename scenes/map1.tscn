@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://8xbabt0gi1ik"]
+[gd_scene load_steps=17 format=3 uid="uid://8xbabt0gi1ik"]
 
 [ext_resource type="PackedScene" uid="uid://qpg3khgngnk6" path="res://scenes/entities/finish_line.tscn" id="1_chti6"]
 [ext_resource type="PackedScene" uid="uid://dimssf7ov7xra" path="res://scenes/static/trees/tree_01.tscn" id="1_ee2qu"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d2fmw6unx854g" path="res://scenes/entities/CameraGimbal.tscn" id="3_bv0be"]
 [ext_resource type="Texture2D" uid="uid://cqs7u5bclw2db" path="res://assets/materials/road.png" id="6_q6rrw"]
 [ext_resource type="PackedScene" uid="uid://gx84viufbxyp" path="res://scenes/entities/cars/AI_fiat_panda.tscn" id="8_kjeox"]
+[ext_resource type="PackedScene" uid="uid://dgl3rnlaptvwe" path="res://scenes/entities/road_end_zone.tscn" id="9_v1cpy"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_x2gbv"]
 size = Vector2(1000, 1000)
@@ -91,7 +92,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_8qykq")
 
 [node name="finish_line" parent="." node_paths=PackedStringArray("_gameMode") instance=ExtResource("1_chti6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.3118, 0, 91.3284)
+transform = Transform3D(0.876424, 0, 0.48154, 0, 1, 0, -0.48154, 0, 0.876424, -14.542, 0, 39.945)
 _gameMode = NodePath("../game_mode")
 
 [node name="fiatPanda" parent="." node_paths=PackedStringArray("_playerCamera") instance=ExtResource("2_vf8vm")]
@@ -160,6 +161,9 @@ material = SubResource("StandardMaterial3D_6j3vs")
 [node name="AICar" parent="." instance=ExtResource("8_kjeox")]
 transform = Transform3D(0.999582, 0, 0.0288985, 0, 1, 0, -0.0288985, 0, 0.999582, -12.7997, 0.901548, 36.3417)
 _PatrolPath = NodePath("../AICarPathOpposing")
+
+[node name="road_end_zone" parent="." instance=ExtResource("9_v1cpy")]
+transform = Transform3D(0.996745, 0, 0.0806165, 0, 1, 0, -0.0806165, 0, 0.996745, 39.3612, 0.220857, 50.9803)
 
 [node name="AICarPathOpposing" type="Path3D" parent="."]
 curve = SubResource("Curve3D_7obkk")
