@@ -1,16 +1,18 @@
-[gd_scene load_steps=22 format=3 uid="uid://gx84viufbxyp"]
+[gd_scene load_steps=24 format=3 uid="uid://gx84viufbxyp"]
 
 [ext_resource type="Texture2D" uid="uid://dv75uxxqjpovx" path="res://assets/models/cars/fiatPanda_MarkedTexture.png" id="1_4we0o"]
 [ext_resource type="Script" path="res://assets/scripts/AICar.cs" id="1_7ojcu"]
 [ext_resource type="Texture2D" uid="uid://b0kp64iqbuwc7" path="res://assets/models/cars/fiatPanda_MarkedTexture_1.png" id="2_geoqh"]
 [ext_resource type="AudioStream" uid="uid://bk7h4q574i4c4" path="res://assets/sounds/engine.mp3" id="4_h3iqs"]
 [ext_resource type="AudioStream" uid="uid://c5nit2ow61f3s" path="res://assets/sounds/car_horn.mp3" id="5_tvs15"]
+[ext_resource type="Material" uid="uid://b63l16wcjc7xv" path="res://assets/materials/car_light.tres" id="6_eccl8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcilk"]
 resource_name = "Material.001"
 cull_mode = 2
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_4we0o")
+metallic = 1.0
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l00yt"]
@@ -200,6 +202,8 @@ shadow_mesh = SubResource("ArrayMesh_8aqpk")
 [sub_resource type="BoxShape3D" id="BoxShape3D_je3n4"]
 size = Vector3(1.52499, 1.12467, 3.48697)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_mi4xl"]
+
 [node name="fiatPanda" type="CharacterBody3D" node_paths=PackedStringArray("_EngineSound", "_HornSound")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.553671, 0)
 script = ExtResource("1_7ojcu")
@@ -255,5 +259,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.32604)
 stream = ExtResource("5_tvs15")
 bus = &"Env"
 doppler_tracking = 2
+
+[node name="RightFrontLight" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, 2.85319e-10, 8.74223e-08, 0, -0.999995, 0.00326367, 8.74228e-08, 0.00326367, 0.999995, 0.443508, -0.0560193, -1.75184)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RightFrontLight"]
+transform = Transform3D(0.134155, 0, 0, 0, 6.00703e-08, 0.0828076, 0, -1, 4.97676e-09, -0.0289547, -0.0116805, 0.110882)
+mesh = SubResource("PlaneMesh_mi4xl")
+skeleton = NodePath("../../LeftFrontLight")
+surface_material_override/0 = ExtResource("6_eccl8")
+
+[node name="LeftFrontLight" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, 2.85319e-10, 8.74223e-08, 0, -0.999995, 0.00326367, 8.74228e-08, 0.00326367, 0.999995, -0.498308, -0.0560193, -1.75184)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftFrontLight"]
+transform = Transform3D(0.134155, 0, 0, 0, 6.00703e-08, 0.0828076, 0, -1, 4.97676e-09, -0.015113, -0.0116808, 0.110883)
+mesh = SubResource("PlaneMesh_mi4xl")
+surface_material_override/0 = ExtResource("6_eccl8")
 
 [connection signal="body_entered" from="Area3D" to="." method="OnCollide"]
