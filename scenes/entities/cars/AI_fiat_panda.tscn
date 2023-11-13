@@ -254,5 +254,6 @@ doppler_tracking = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.32604)
 stream = ExtResource("5_tvs15")
 bus = &"Env"
+doppler_tracking = 2
 
 [connection signal="body_entered" from="Area3D" to="." method="OnCollide"]
