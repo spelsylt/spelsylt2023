@@ -6,6 +6,7 @@ public partial class AICar : CharacterBody3D
 {
 	[Export] private float _speed = 100.0f;
 	[Export] private NodePath _PatrolPath;
+	[Export] private AudioStreamPlayer3D _EngineSound;
 	private Vector3[] _patrolPoints;
 	private int _patrolIndex = 0;
 	private bool _active = true;
@@ -42,6 +43,7 @@ public partial class AICar : CharacterBody3D
 
 	public void Disable()  {
 		_active = false;
+		_EngineSound.Stop();
 	}
 
 	public void OnCollide(Node3D body) {
