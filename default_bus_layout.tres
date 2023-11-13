@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://bhitiqumrek6h"]
+[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://bhitiqumrek6h"]
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_nqc31"]
 resource_name = "Reverb"
@@ -9,9 +9,21 @@ wet = 0.01
 
 [sub_resource type="AudioEffectEQ" id="AudioEffectEQ_l7uuv"]
 resource_name = "EQ"
-band_db/1000_hz = -23.8
-band_db/3200_hz = -31.4
+band_db/32_hz = -4.5
+band_db/100_hz = -9.4
+band_db/320_hz = -32.8
+band_db/1000_hz = -35.9
+band_db/3200_hz = -41.3
 band_db/10000_hz = -45.0
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_u2iyd"]
+resource_name = "HighPassFilter"
+cutoff_hz = 50.0
+resonance = 1.0
+db = 3
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_rtlr4"]
+resource_name = "LowPassFilter"
 
 [resource]
 bus/1/name = &"Env"
@@ -36,3 +48,7 @@ bus/3/volume_db = -2.51248
 bus/3/send = &"Car"
 bus/3/effect/0/effect = SubResource("AudioEffectEQ_l7uuv")
 bus/3/effect/0/enabled = true
+bus/3/effect/1/effect = SubResource("AudioEffectHighPassFilter_u2iyd")
+bus/3/effect/1/enabled = true
+bus/3/effect/2/effect = SubResource("AudioEffectLowPassFilter_rtlr4")
+bus/3/effect/2/enabled = true

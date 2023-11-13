@@ -300,6 +300,6 @@ _car = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.22269)
 stream = ExtResource("6_3waqh")
 volume_db = -19.067
-unit_size = 20.87
+unit_size = 100.0
 autoplay = true
 bus = &"CarEngine"
