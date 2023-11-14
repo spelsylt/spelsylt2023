@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcvq2fclwrnp5"]
+
+[ext_resource type="Script" path="res://assets/scripts/ui/ScaleUI.cs" id="1_i34bo"]
+[ext_resource type="AudioStream" uid="uid://gxb3aiqb1mg0" path="res://assets/sounds/weight_riser.mp3" id="2_wykoj"]
+[ext_resource type="AudioStream" uid="uid://b1goesk8kf2ls" path="res://assets/sounds/airhorn.mp3" id="3_al5e3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g3vnm"]
+font_size = 64
+
+[node name="ScaleUI" type="Control" node_paths=PackedStringArray("_weightLabel", "_ScaleRiser", "_AirHorn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i34bo")
+_weightLabel = NodePath("WeightLabel")
+_ScaleRiser = NodePath("ScaleRiser")
+_AirHorn = NodePath("AirHorn")
+
+[node name="WeightLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -31.0
+offset_top = 82.0
+offset_right = 31.0
+offset_bottom = 130.0
+grow_horizontal = 2
+text = "0 kg"
+label_settings = SubResource("LabelSettings_g3vnm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScaleRiser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wykoj")
+volume_db = 6.958
+bus = &"Env"
+
+[node name="AirHorn" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_al5e3")
+volume_db = -5.0

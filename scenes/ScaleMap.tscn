@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfbobaatefx0a"]
+[gd_scene load_steps=5 format=3 uid="uid://cfbobaatefx0a"]
 
 [ext_resource type="Script" path="res://assets/scripts/ScaleMap.cs" id="1_wtao4"]
+[ext_resource type="PackedScene" uid="uid://bcvq2fclwrnp5" path="res://scenes/UI/ScaleUI.tscn" id="2_2o7fc"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xjqfv"]
 
@@ -28,3 +29,5 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Scale"]
 shape = SubResource("BoxShape3D_o16su")
+
+[node name="ScaleUI" parent="." instance=ExtResource("2_2o7fc")]

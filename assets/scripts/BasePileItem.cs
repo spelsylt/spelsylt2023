@@ -71,7 +71,6 @@ public partial class BasePileItem : RigidBody3D
 
 	public void ReleaseBranch() {
 		Freeze = false;
-		// TODO launch everything with a little bit of force in a random direction
 		_childItems.ForEach(x => x.ReleaseBranch());
 		if (_parent != null) {
 			var pos = GlobalPosition;

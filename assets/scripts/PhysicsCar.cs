@@ -32,6 +32,9 @@ public partial class PhysicsCar : VehicleBody3D
 	private float _gearShiftTime = 0.3f;
 	private float _gearShiftTimer = 0.0f;
 
+	public float StartMass = 0;
+	public float PileStartMass = 0;
+
 	[Export] private bool _disabled = false;
 
 	public int Gear {get {return _currentGear;} private set {}}

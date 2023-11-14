@@ -23,7 +23,9 @@ public partial class Pile : Node3D
 		}
 
 		_pileItems = GetChildren().Where(x => x is BasePileItem).Cast<BasePileItem>().ToList();
-		_car.Mass += _pileItems.Sum(x => x.GetValueOfBranch());
+		_car.PileStartMass = _pileItems.Sum(x => x.GetValueOfBranch());
+		_car.StartMass = _car.Mass;
+		_car.Mass += _car.PileStartMass;
 		_pileItems.ForEach(x => x.FreezeBranch());
 		// TODO can we adjust the car collider to cover all the items for some cheap easy collision?
 		
