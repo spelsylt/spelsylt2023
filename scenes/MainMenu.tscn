@@ -1,7 +1,60 @@
-[gd_scene load_steps=2 format=3 uid="uid://mk0k340rdlyh"]
+[gd_scene load_steps=10 format=3 uid="uid://mk0k340rdlyh"]
 
 [ext_resource type="PackedScene" uid="uid://38xm0mprjfcl" path="res://scenes/UI/MainMenuUI.tscn" id="1_o5p7q"]
+[ext_resource type="AudioStream" uid="uid://drsdcrrofynx1" path="res://assets/sounds/main_menu.mp3" id="2_yw0rr"]
+[ext_resource type="Script" path="res://assets/scripts/RotaryPlate.cs" id="3_52enb"]
+[ext_resource type="PackedScene" uid="uid://ye6r1hyurkjw" path="res://scenes/entities/cars/car_fiat_panda.tscn" id="3_v8suq"]
+[ext_resource type="PackedScene" uid="uid://dyemq52f1fbki" path="res://scenes/entities/pile.tscn" id="4_c4mhf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u7iyk"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ims46"]
+material = SubResource("StandardMaterial3D_u7iyk")
+top_radius = 4.071
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xgh3d"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1accn"]
+material = SubResource("StandardMaterial3D_xgh3d")
+size = Vector2(100, 100)
 
 [node name="MainMenu" type="Node3D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yw0rr")
+autoplay = true
+bus = &"Music"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.628987, 2.77746)
+
+[node name="RotaryPlate" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, -0.996102, -1.93544)
+script = ExtResource("3_52enb")
+_speed = 0.25
+
+[node name="fiatPanda" parent="RotaryPlate" instance=ExtResource("3_v8suq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+freeze = true
+_disabled = true
+
+[node name="pile" parent="RotaryPlate/fiatPanda" instance=ExtResource("4_c4mhf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0295415, 1.11331, -0.771454)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RotaryPlate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.60964, 0)
+mesh = SubResource("CylinderMesh_ims46")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.930005, 0.220626, -0.293963, -0.0914076, 0.913506, 0.396424, 0.355998, -0.341806, 0.869732, -0.501592, 2.32782, 4.62435)
+light_energy = 15.0
+light_specular = 3.205
+spot_range = 9.3894
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.258819, -0.965926, 0, 0.965926, -0.258819, 0, 0, -9.47063)
+mesh = SubResource("PlaneMesh_1accn")
 
 [node name="MainMenuUI" parent="." instance=ExtResource("1_o5p7q")]
