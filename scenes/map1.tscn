@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://8xbabt0gi1ik"]
+[gd_scene load_steps=18 format=3 uid="uid://8xbabt0gi1ik"]
 
 [ext_resource type="Material" uid="uid://brqh7oftdu7wx" path="res://assets/materials/env/m_grass01.tres" id="1_6oynk"]
 [ext_resource type="PackedScene" uid="uid://qpg3khgngnk6" path="res://scenes/entities/finish_line.tscn" id="1_chti6"]
@@ -12,6 +12,7 @@
 [ext_resource type="Material" uid="uid://c3j23c6cwkb83" path="res://assets/materials/road.tres" id="7_k20ir"]
 [ext_resource type="PackedScene" uid="uid://gx84viufbxyp" path="res://scenes/entities/cars/AI_fiat_panda.tscn" id="8_kjeox"]
 [ext_resource type="PackedScene" uid="uid://dgl3rnlaptvwe" path="res://scenes/entities/road_end_zone.tscn" id="9_v1cpy"]
+[ext_resource type="AudioStream" uid="uid://b6720l52u34p4" path="res://assets/sounds/in_game.mp3" id="13_f1ef8"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_x2gbv"]
 size = Vector2(1000, 1000)
@@ -153,3 +154,9 @@ transform = Transform3D(0.996745, 0, 0.0806165, 0, 1, 0, -0.0806165, 0, 0.996745
 
 [node name="AICarPathOpposing" type="Path3D" parent="."]
 curve = SubResource("Curve3D_7obkk")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_f1ef8")
+volume_db = -5.0
+autoplay = true
+bus = &"Music"

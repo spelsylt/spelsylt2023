@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfbobaatefx0a"]
+[gd_scene load_steps=6 format=3 uid="uid://cfbobaatefx0a"]
 
 [ext_resource type="Script" path="res://assets/scripts/ScaleMap.cs" id="1_wtao4"]
 [ext_resource type="PackedScene" uid="uid://bcvq2fclwrnp5" path="res://scenes/UI/ScaleUI.tscn" id="2_2o7fc"]
+[ext_resource type="AudioStream" uid="uid://b1ib3tlb3e1kp" path="res://assets/sounds/main_menu.mp3" id="3_5l1w1"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xjqfv"]
 
@@ -31,3 +32,8 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_o16su")
 
 [node name="ScaleUI" parent="." instance=ExtResource("2_2o7fc")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5l1w1")
+volume_db = -10.0
+autoplay = true
