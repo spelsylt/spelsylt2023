@@ -9,7 +9,7 @@ public partial class BasePileItem : RigidBody3D
 	private List<BasePileItem>  _childItems;
 	private BasePileItem _parent;
 	private Vector3? _originalPosition;
-	[Export] private float _linearMomentOfInertia = 40.0f;
+	[Export] private float _linearMomentOfInertia = 1.0f;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -43,9 +43,9 @@ public partial class BasePileItem : RigidBody3D
 
 			// Linear relasionship between force and lean gives a cartoonish feel
 			float sideLean = -force / _linearMomentOfInertia;
-
-			Rotation = new Vector3(sideLean, 0.0f, 0.0f);
-			Position = (Vector3)_originalPosition + new Vector3(0.0f, 0.0f, sideLean);
+			// TODO broken
+			//Rotation = new Vector3(sideLean, Rotation.Y, Rotation.Z);
+			//Position = (Vector3)_originalPosition + new Vector3(0.0f, 0.0f, sideLean);
 		}
 	}
 

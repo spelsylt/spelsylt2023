@@ -1,16 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyemq52f1fbki"]
+[gd_scene load_steps=5 format=3 uid="uid://dyemq52f1fbki"]
 
 [ext_resource type="Script" path="res://assets/scripts/Pile.cs" id="1_aydlw"]
-[ext_resource type="PackedScene" uid="uid://dya5vn2gt6dij" path="res://scenes/entities/items/cube_item.tscn" id="2_fwnfw"]
+[ext_resource type="PackedScene" uid="uid://c4axecwbi2p2y" path="res://scenes/entities/items/fridge.tscn" id="2_wy57n"]
+[ext_resource type="PackedScene" uid="uid://btt7o7vmga40a" path="res://scenes/entities/items/tv.tscn" id="3_2lbew"]
+[ext_resource type="PackedScene" uid="uid://cqhn1td7y4kq0" path="res://scenes/entities/items/cone.tscn" id="4_umjnq"]
 
 [node name="pile" type="Node3D"]
 script = ExtResource("1_aydlw")
 
-[node name="base_pile_item" parent="." instance=ExtResource("2_fwnfw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.670922, 0, 0)
+[node name="base_pile_item3" parent="." instance=ExtResource("2_wy57n")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 8.49977e-09, -0.194452, 0)
 
-[node name="base_pile_item" parent="base_pile_item" instance=ExtResource("2_fwnfw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.758282, 1.05337, 0)
+[node name="base_pile_item" parent="base_pile_item3" instance=ExtResource("3_2lbew")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.642808, -0.352006, -0.0026381)
 
-[node name="base_pile_item2" parent="." instance=ExtResource("2_fwnfw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.783694, 0, 0)
+[node name="base_pile_item" parent="base_pile_item3/base_pile_item" instance=ExtResource("4_umjnq")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -2.98023e-08, 0.878497)
+
+[node name="base_pile_item2" parent="base_pile_item3" instance=ExtResource("4_umjnq")]
+transform = Transform3D(0.997597, -0.0692864, 0, 0.0692864, 0.997597, 0, 0, 0, 1, 0.610488, 0.469055, 0.00942922)

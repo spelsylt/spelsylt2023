@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqhn1td7y4kq0"]
+
+[ext_resource type="PackedScene" uid="uid://b7q4nw5lffgfl" path="res://scenes/entities/base_pile_item.tscn" id="1_6oi1c"]
+[ext_resource type="PackedScene" uid="uid://dnjfw1022a7d1" path="res://assets/models/items/Cone.glb" id="2_vjeh0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ef02n"]
+height = 0.929
+radius = 0.262024
+
+[node name="base_pile_item" instance=ExtResource("1_6oi1c")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00215924, -0.0927942, 0.00146222)
+shape = SubResource("CylinderShape3D_ef02n")
+
+[node name="Cone" parent="." index="1" instance=ExtResource("2_vjeh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.574277, 0)

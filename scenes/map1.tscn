@@ -86,6 +86,8 @@ _playerCamera = NodePath("../CameraGimbal")
 [node name="pile" parent="fiatPanda" node_paths=PackedStringArray("_car") instance=ExtResource("3_1gnvd")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.25321, -0.700226)
 _car = NodePath("..")
+_accelerationToScoreFactor = 0.5
+_accelerationLimit = 20.0
 
 [node name="CameraGimbal" parent="." instance=ExtResource("3_bv0be")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.64322, 3.00342, -93.3386)
