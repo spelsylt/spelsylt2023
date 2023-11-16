@@ -8,8 +8,9 @@ public partial class BasePileItem : RigidBody3D
 	private PhysicsCar _car;
 	private List<BasePileItem>  _childItems;
 	private BasePileItem _parent;
-	private Vector3? _originalPosition;
-	[Export] private float _linearMomentOfInertia = 40.0f;
+	private Vector3 _originalPosition;
+	private Vector3 _originalRotation;
+	[Export] private float _linearMomentOfInertia = 100.0f;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -18,6 +19,7 @@ public partial class BasePileItem : RigidBody3D
 		_childItems = GetChildren().Where(x => x is BasePileItem).Cast<BasePileItem>().ToList();
 		_parent = GetParentOrNull<BasePileItem>();
 		_originalPosition = Position;
+		_originalRotation = Rotation;
 	}
 	
 	public void setCar(PhysicsCar car) {
@@ -44,8 +46,8 @@ public partial class BasePileItem : RigidBody3D
 			// Linear relasionship between force and lean gives a cartoonish feel
 			float sideLean = -force / _linearMomentOfInertia;
 			// TODO broken
-			//Rotation = new Vector3(sideLean, Rotation.Y, Rotation.Z);
-			//Position = (Vector3)_originalPosition + new Vector3(0.0f, 0.0f, sideLean);
+			Rotation = _originalRotation.Rotated(Vector3.Up, sideLean);
+			//Position = _originalPosition + _car.LinearVelocity.Normalized() * sideLean;
 		}
 	}
 
@@ -59,10 +61,14 @@ public partial class BasePileItem : RigidBody3D
 
 	public void RemoveChildItem(BasePileItem item) {
 		var pos = item.GlobalPosition;
+		var rot = item.GlobalRotation;
 		var tree = GetTree();
+		item.Freeze = false;
+		item.SetCollisionLayerValue(1, true); // enables collision with other items and car
 		RemoveChild(item);
 		tree.Root.AddChild(item);
 		item.GlobalPosition = pos;
+		item.GlobalRotation = rot;
 		item.ApplyForce(new Vector3(GD.Randf(), GD.Randf(), GD.Randf()) * 100f * GD.Randf());
 		_childItems = GetChildren().Where(x => x is BasePileItem).Cast<BasePileItem>().ToList();
 	}

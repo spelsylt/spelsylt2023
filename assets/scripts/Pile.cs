@@ -71,11 +71,15 @@ public partial class Pile : Node3D
 	private void release(BasePileItem item) {
 		if (item.GetParentItem() == null) {
 			_pileItems.Remove(item);
+			item.Freeze = false;
 			var pos = item.GlobalPosition;
+			var rot = item.GlobalRotation;
 			RemoveChild(item);
 			GetTree().Root.AddChild(item);
 			item.GlobalPosition = pos;
+			item.GlobalRotation = rot;
 			item.ApplyForce(new Vector3(GD.Randf(), GD.Randf(), GD.Randf()) * 100f * GD.Randf());
+			item.SetCollisionLayerValue(1, true); // enables collision with other items and car
 		} else {
 			item.GetParentItem().RemoveChildItem(item);
 		}
