@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ye6r1hyurkjw"]
+[gd_scene load_steps=27 format=3 uid="uid://ye6r1hyurkjw"]
 
 [ext_resource type="Script" path="res://assets/scripts/PhysicsCar.cs" id="1_bbmuc"]
 [ext_resource type="Texture2D" uid="uid://b0kp64iqbuwc7" path="res://assets/models/cars/fiatPanda_MarkedTexture_1.png" id="2_ac76x"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://assets/scripts/CarSounds.cs" id="5_vem15"]
 [ext_resource type="AudioStream" uid="uid://bk7h4q574i4c4" path="res://assets/sounds/engine.mp3" id="6_3waqh"]
 [ext_resource type="AudioStream" uid="uid://dvb4n0mhqge1b" path="res://assets/sounds/skidsounds/skid_sounds.tres" id="8_1fixc"]
+[ext_resource type="Material" uid="uid://bflo64wwc4dsu" path="res://assets/materials/car_light_rear.tres" id="9_ns44y"]
 
 [sub_resource type="Curve" id="Curve_ha62w"]
 _data = [Vector2(0, 0.0421052), 0.0, 0.0, 0, 0, Vector2(0.779944, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -295,7 +296,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.116154, 0)
 shape = SubResource("BoxShape3D_yxhas")
 
 [node name="RightFrontLight" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.999995, 0.00326367, 0, -0.00326367, -0.999995, -0.441083, -0.0560193, 1.75796)
+transform = Transform3D(1, 0, 0, 0, -0.999995, 0.00326367, 0, -0.00326367, -0.999995, -0.441083, -0.0559335, 1.73165)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="RightFrontLight"]
 transform = Transform3D(0.134155, 0, 0, 0, 6.00703e-08, 0.0828076, 0, -1, 4.97676e-09, -0.0289547, -0.0116805, 0.110882)
@@ -304,7 +305,7 @@ skeleton = NodePath("../../LeftFrontLight")
 surface_material_override/0 = ExtResource("4_2wth6")
 
 [node name="LeftFrontLight" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.999995, 0.00326367, 0, -0.00326367, -0.999995, 0.500733, -0.0560193, 1.75796)
+transform = Transform3D(1, 0, 0, 0, -0.999995, 0.00326367, 0, -0.00326367, -0.999995, 0.500733, -0.0559335, 1.73165)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LeftFrontLight"]
 transform = Transform3D(0.134155, 0, 0, 0, 6.00703e-08, 0.0828076, 0, -1, 4.97676e-09, -0.015113, -0.0116808, 0.110883)
@@ -329,3 +330,22 @@ bus = &"CarEngine"
 [node name="Skidsounds" type="AudioStreamPlayer2D" parent="CarSounds"]
 stream = ExtResource("8_1fixc")
 bus = &"Car"
+
+[node name="RightBackLight" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, -2.77556e-17, -8.74228e-08, 2.85319e-10, -0.999995, -0.00326367, -8.74223e-08, -0.00326367, 0.999995, -0.503479, 0.137165, -1.74099)
+light_color = Color(0.952941, 0, 0, 1)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RightBackLight"]
+transform = Transform3D(0.134155, 0, 0, 0, 6.00703e-08, 0.0828076, 0, -1, 4.97676e-09, -0.0289547, -0.0116805, 0.110882)
+mesh = SubResource("PlaneMesh_j3xc1")
+skeleton = NodePath("../../LeftFrontLight")
+surface_material_override/0 = ExtResource("9_ns44y")
+
+[node name="LeftBackLight" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, -2.77556e-17, -8.74228e-08, 2.85319e-10, -0.999995, -0.00326367, -8.74223e-08, -0.00326367, 0.999995, 0.438337, 0.137165, -1.74099)
+light_color = Color(0.952941, 0, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftBackLight"]
+transform = Transform3D(0.134155, 0, 0, 0, 6.00703e-08, 0.0828076, 0, -1, 4.97676e-09, -0.015113, -0.0116808, 0.110883)
+mesh = SubResource("PlaneMesh_j3xc1")
+surface_material_override/0 = ExtResource("9_ns44y")
