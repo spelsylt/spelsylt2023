@@ -110,23 +110,23 @@ public partial class PhysicsCar : VehicleBody3D
 			} else if (_currentGear == 2) {
 				if (speed <= 10) {
 					_currentGear--;
-				} else if (speed >= 30) {
+				} else if (speed >= 40) {
 					_currentGear++;
 				}
 			} else if (_currentGear == 3) {
-				if (speed <= 25) {
+				if (speed <= 35) {
 					_currentGear--;
-				} else if (speed >= 50) {
+				} else if (speed >= 65) {
 					_currentGear++;
 				}
 			} else if (_currentGear == 4) {
-				if (speed <= 45) {
+				if (speed <= 55) {
 					_currentGear--;
-				} else if (speed >= 70) {
+				} else if (speed >= 80) {
 					_currentGear++;
 				}
 			} else if (_currentGear == 5) {
-				if (speed <= 65) {
+				if (speed <= 75) {
 					_currentGear--;
 				}
 			}
