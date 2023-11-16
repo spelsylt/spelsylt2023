@@ -43,43 +43,51 @@ public partial class Pile : Node3D
 		if (_lastVelocity != null) {
 			float acceleration = ((velocity - (Vector3)_lastVelocity) / (float) delta).Length();
 			if (acceleration > _accelerationLimit) {
-				loseItem(acceleration * _accelerationToScoreFactor);
+				GD.Print("Acc: " + acceleration);
+				loseItems(acceleration * _accelerationToScoreFactor);
 			}
 		}
 		_lastVelocity = velocity;
 	}
 
-	private void loseItem(float score) {
-		GD.Print("Lose item for score: ", score);
-		List<BasePileItem> leafs = new List<BasePileItem>();
-		foreach(var item in _pileItems) {
-			leafs.AddRange(item.GetLeafs());
+	private void loseItems(float score) {
+		GD.Print("Losing items for value: " + score);
+		if (_pileItems.Count() == 0) {
+			return;
 		}
-		List<BasePileItem> candidates = new List<BasePileItem>();
-		foreach(var leaf in leafs) {
-			var candidate = GetLoseCandidates(score, leaf);
-			if (candidate != null) {
-				candidates.Add(candidate);
-			}
+		var leaf = getRandomLeaf(_pileItems);
+		if (leaf.GetValue() > score) {
+			return;
 		}
-		if (candidates.Count() == 0) {
-			GD.Print("No items elegible to lose for score: ", score);
+		release(leaf);
+		var remaining = score - leaf.GetValue();
+		if (remaining <= 0) {
 			return;
 		} else {
-			GD.Print("Candidates for loss: ", candidates.Count());
-			int index = (int)MathF.Ceiling(GD.RandRange(0, candidates.Count() - 1));
-			var itemBranchToLose = candidates[index];
-			var valLoss = itemBranchToLose.GetValueOfBranch();
-			itemBranchToLose.ReleaseBranch();
-			if (itemBranchToLose.GetParentItem() == null) {
-				_pileItems.Remove(itemBranchToLose);
-				var pos = GlobalPosition;
-				RemoveChild(itemBranchToLose);
-				GetTree().Root.AddChild(itemBranchToLose);
-				itemBranchToLose.GlobalPosition = pos;
-			}
-			_car.Mass -= valLoss;
+			loseItems(score);
 		}
+	}
+
+	private void release(BasePileItem item) {
+		if (item.GetParentItem() == null) {
+			_pileItems.Remove(item);
+			var pos = item.GlobalPosition;
+			RemoveChild(item);
+			GetTree().Root.AddChild(item);
+			item.GlobalPosition = pos;
+			item.ApplyForce(new Vector3(GD.Randf(), GD.Randf(), GD.Randf()) * 100f * GD.Randf());
+		} else {
+			item.GetParentItem().RemoveChildItem(item);
+		}
+		_car.Mass -= item.GetValue();
+	}
+
+	private BasePileItem getRandomLeaf(List<BasePileItem> items) {
+		var item = items[GD.RandRange(0, items.Count() - 1)];
+		if (item.IsLeaf()) {
+			return item;
+		}
+		return getRandomLeaf(item.GetChildItems());
 	}
 
 	private BasePileItem GetLoseCandidates(float score, BasePileItem next) {

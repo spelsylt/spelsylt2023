@@ -53,6 +53,20 @@ public partial class BasePileItem : RigidBody3D
 		return _childItems.Count() == 0;
 	}
 
+	public List<BasePileItem> GetChildItems() {
+		return _childItems;
+	}
+
+	public void RemoveChildItem(BasePileItem item) {
+		var pos = item.GlobalPosition;
+		var tree = GetTree();
+		RemoveChild(item);
+		tree.Root.AddChild(item);
+		item.GlobalPosition = pos;
+		item.ApplyForce(new Vector3(GD.Randf(), GD.Randf(), GD.Randf()) * 100f * GD.Randf());
+		_childItems = GetChildren().Where(x => x is BasePileItem).Cast<BasePileItem>().ToList();
+	}
+
 	public float GetValue() {
 		return Mass;
 	}
