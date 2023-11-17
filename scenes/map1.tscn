@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://8xbabt0gi1ik"]
+[gd_scene load_steps=15 format=3 uid="uid://8xbabt0gi1ik"]
 
-[ext_resource type="Material" uid="uid://brqh7oftdu7wx" path="res://assets/materials/env/m_grass01.tres" id="1_6oynk"]
 [ext_resource type="PackedScene" uid="uid://qpg3khgngnk6" path="res://scenes/entities/finish_line.tscn" id="1_chti6"]
-[ext_resource type="PackedScene" uid="uid://dimssf7ov7xra" path="res://scenes/static/trees/tree_01.tscn" id="1_ee2qu"]
+[ext_resource type="PackedScene" uid="uid://cryu8t5a8op6y" path="res://scenes/terrain/terrain.tscn" id="1_oxoix"]
 [ext_resource type="PackedScene" uid="uid://bwqaj4o8gdlu6" path="res://scenes/entities/game_mode.tscn" id="1_qvsgy"]
 [ext_resource type="PackedScene" uid="uid://ye6r1hyurkjw" path="res://scenes/entities/cars/car_fiat_panda.tscn" id="2_vf8vm"]
 [ext_resource type="PackedScene" uid="uid://dyemq52f1fbki" path="res://scenes/entities/pile.tscn" id="3_1gnvd"]
@@ -13,12 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://gx84viufbxyp" path="res://scenes/entities/cars/AI_fiat_panda.tscn" id="8_kjeox"]
 [ext_resource type="PackedScene" uid="uid://dgl3rnlaptvwe" path="res://scenes/entities/road_end_zone.tscn" id="9_v1cpy"]
 [ext_resource type="AudioStream" uid="uid://b6720l52u34p4" path="res://assets/sounds/in_game.mp3" id="13_f1ef8"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_x2gbv"]
-size = Vector2(1000, 1000)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_buved"]
-size = Vector3(1000, 0.025, 1000)
 
 [sub_resource type="Curve3D" id="Curve3D_nwk6m"]
 _data = {
@@ -36,50 +29,19 @@ point_count = 45
 
 [node name="map1" type="Node"]
 
-[node name="WorldPlane" type="StaticBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldPlane"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.305096, 0)
-material_override = ExtResource("1_6oynk")
-mesh = SubResource("PlaneMesh_x2gbv")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldPlane"]
-shape = SubResource("BoxShape3D_buved")
-
-[node name="tree01" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7833, 0.0124998, 44.1373)
-
-[node name="tree02" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7833, 0.0124998, 39.1954)
-
-[node name="tree03" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7833, 0.0124998, 34.3647)
-
-[node name="tree04" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.7833, 0.0124998, 29.4228)
-
-[node name="tree05" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9304, 0.0124998, 44.1373)
-
-[node name="tree06" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9304, 0.0124998, 39.1954)
-
-[node name="tree07" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9304, 0.0124998, 34.3647)
-
-[node name="tree08" parent="WorldPlane" instance=ExtResource("1_ee2qu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9304, 0.0124998, 29.4228)
+[node name="terrain" parent="." instance=ExtResource("1_oxoix")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -27.915, 0)
 
 [node name="game_mode" parent="." node_paths=PackedStringArray("_car") instance=ExtResource("1_qvsgy")]
 _car = NodePath("../fiatPanda")
 _endScene = ExtResource("3_fm44u")
 
 [node name="finish_line" parent="." node_paths=PackedStringArray("_gameMode") instance=ExtResource("1_chti6")]
-transform = Transform3D(0.876424, 0, 0.48154, 0, 1, 0, -0.48154, 0, 0.876424, -14.542, 0, 39.945)
+transform = Transform3D(0.876424, 0, 0.48154, 0, 1, 0, -0.48154, 0, 0.876424, -14.542, -15.6233, 39.945)
 _gameMode = NodePath("../game_mode")
 
 [node name="fiatPanda" parent="." node_paths=PackedStringArray("_playerCamera") instance=ExtResource("2_vf8vm")]
-transform = Transform3D(-0.980945, 0, -0.194286, 0, 1, 0, 0.194286, 0, -0.980945, 39.669, 0.889126, 40.7198)
+transform = Transform3D(-0.980945, 0, -0.194286, 0, 1, 0, 0.194286, 0, -0.980945, 39.669, -16.1665, 40.7198)
 _acceleration = 11.0
 _playerCamera = NodePath("../CameraGimbal")
 
@@ -90,17 +52,18 @@ _accelerationToScoreFactor = 0.1
 _accelerationLimit = 999999.0
 
 [node name="CameraGimbal" parent="." instance=ExtResource("3_bv0be")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.64322, 3.00342, -93.3386)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.64322, -5.34705, -93.3386)
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.0310759, -0.801283, 0.597478, 0.00432757, 0.597869, 0.801582, -0.999508, -0.0223243, 0.0220469, 30.5905, 12.6111, 0)
+transform = Transform3D(0.0310759, -0.801283, 0.597478, 0.00432757, 0.597869, 0.801582, -0.999508, -0.0223243, 0.0220469, 30.5905, 4.26063, 0)
 light_energy = 2.112
 
 [node name="TrackPath" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.35047, 0)
 curve = SubResource("Curve3D_nwk6m")
 
 [node name="PavementLeft" type="CSGPolygon3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122694, 0.0569341, -0.0153595)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122694, -8.29354, -0.0153595)
 use_collision = true
 polygon = PackedVector2Array(-0.508174, -0.0041344, -0.504479, 0.191916, 0.660727, 0.227831, 0.632474, 0.00797965)
 mode = 2
@@ -116,7 +79,7 @@ path_joined = false
 material = ExtResource("7_g3pqk")
 
 [node name="PavementRight" type="CSGPolygon3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122694, 0.0569341, -0.0153595)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122694, -8.29354, -0.0153595)
 use_collision = true
 polygon = PackedVector2Array(14.571, -0.0235779, 14.5625, 0.253844, 15.9004, 0.244286, 15.8954, -0.00676484)
 mode = 2
@@ -132,8 +95,9 @@ path_joined = false
 material = ExtResource("7_g3pqk")
 
 [node name="Track" type="CSGPolygon3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122694, 0.0569341, -0.0153595)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122694, -8.29354, -0.0153595)
 use_collision = true
+collision_mask = 7
 polygon = PackedVector2Array(0, 0, 0, 0.1, 15, 0.1, 15, 0)
 mode = 2
 path_node = NodePath("../TrackPath")
@@ -148,13 +112,14 @@ path_joined = false
 material = ExtResource("7_k20ir")
 
 [node name="AICar" parent="." instance=ExtResource("8_kjeox")]
-transform = Transform3D(0.999582, 0, 0.0288985, 0, 1, 0, -0.0288985, 0, 0.999582, -12.7997, 0.901548, 36.3417)
+transform = Transform3D(0.999582, 0, 0.0288985, 0, 1, 0, -0.0288985, 0, 0.999582, -12.7997, -15.0786, 36.3417)
 _PatrolPath = NodePath("../AICarPathOpposing")
 
 [node name="road_end_zone" parent="." instance=ExtResource("9_v1cpy")]
-transform = Transform3D(0.996745, 0, 0.0806165, 0, 1, 0, -0.0806165, 0, 0.996745, 39.3612, 0.220857, 50.9803)
+transform = Transform3D(0.996745, 0, 0.0806165, 0, 1, 0, -0.0806165, 0, 0.996745, 39.3612, -8.12961, 50.9803)
 
 [node name="AICarPathOpposing" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.35047, 0)
 curve = SubResource("Curve3D_7obkk")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

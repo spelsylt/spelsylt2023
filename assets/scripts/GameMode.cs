@@ -39,6 +39,10 @@ public partial class GameMode : Node
 				_CountdownText.Text = count.ToString();
 			}
 		}
+
+		if (Input.IsActionPressed("Reload")) {
+			GetTree().ReloadCurrentScene();
+		}
 	}
 
 	private void GameRunning(float delta) {

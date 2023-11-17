@@ -206,6 +206,7 @@ size = Vector3(1.52499, 1.12467, 3.48697)
 
 [node name="fiatPanda" type="CharacterBody3D" node_paths=PackedStringArray("_EngineSound", "_HornSound")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.553671, 0)
+collision_mask = 3
 script = ExtResource("1_7ojcu")
 _EngineSound = NodePath("Engine")
 _HornSound = NodePath("CarHorn")
@@ -240,6 +241,7 @@ mesh = SubResource("ArrayMesh_efsv4")
 skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.153489, 0)
