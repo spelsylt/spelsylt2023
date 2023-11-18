@@ -77,9 +77,9 @@ public partial class PhysicsCar : VehicleBody3D
 			_clutchPosition = Mathf.Lerp(0.0f, 1.0f, 1.0f - _gearShiftTimer);
 		} else {
 			if (LinearVelocity.Length() < 0.1f) {
-				if (inputThrottle < 0 && RPM >= 1000) {
+				if (inputThrottle < 0) {
 					_currentGear = -1;
-				} else if (inputThrottle > 0 && RPM >= 1000) {
+				} else if (inputThrottle > 0) {
 					_currentGear = 1;
 				} else if (inputThrottle == 0) {
 					_currentGear = 0;

@@ -11,7 +11,7 @@
 [ext_resource type="Material" uid="uid://bflo64wwc4dsu" path="res://assets/materials/car_light_rear.tres" id="9_ns44y"]
 
 [sub_resource type="Curve" id="Curve_ha62w"]
-_data = [Vector2(0, 0.0421052), 0.0, 0.0, 0, 0, Vector2(0.779944, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.0842105), 0.0, 0.0, 0, 0, Vector2(0.779944, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7iv3"]
