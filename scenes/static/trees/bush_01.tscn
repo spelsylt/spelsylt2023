@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cek3voh3baxdx"]
+
+[ext_resource type="PackedScene" uid="uid://djqa1dd04nsyc" path="res://assets/models/trees/bush01_out/bush01.gltf" id="1_fantv"]
+[ext_resource type="Texture2D" uid="uid://dxuc6dt8ftw7w" path="res://assets/materials/trees/bush01.png" id="2_23lgj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bef3j"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_23lgj")
+
+[node name="bush01" instance=ExtResource("1_fantv")]
+
+[node name="bush01" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_bef3j")
