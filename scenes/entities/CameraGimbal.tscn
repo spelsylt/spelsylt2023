@@ -1,22 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2fmw6unx854g"]
+[gd_scene load_steps=2 format=3 uid="uid://d2fmw6unx854g"]
 
 [ext_resource type="Script" path="res://assets/scripts/PlayerCamera.cs" id="1_lgoig"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q4le1"]
-
-[sub_resource type="Sky" id="Sky_v0twb"]
-sky_material = SubResource("ProceduralSkyMaterial_q4le1")
-
-[sub_resource type="Environment" id="Environment_bh2b1"]
-background_mode = 2
-background_energy_multiplier = 1.09
-sky = SubResource("Sky_v0twb")
-
-[node name="CameraGimbal" type="Node3D" node_paths=PackedStringArray("_outerGimbal", "_innerGimbal")]
+[node name="CameraGimbal" type="Node3D" node_paths=PackedStringArray("_outerGimbal", "_innerGimbal", "_camera")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_lgoig")
 _outerGimbal = NodePath("OuterGimbal")
 _innerGimbal = NodePath("OuterGimbal/InnerGimbal")
+_camera = NodePath("OuterGimbal/InnerGimbal/Camera3D")
 
 [node name="OuterGimbal" type="Node3D" parent="."]
 
@@ -24,6 +15,5 @@ _innerGimbal = NodePath("OuterGimbal/InnerGimbal")
 
 [node name="Camera3D" type="Camera3D" parent="OuterGimbal/InnerGimbal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.01398)
-environment = SubResource("Environment_bh2b1")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="OuterGimbal/InnerGimbal/Camera3D"]

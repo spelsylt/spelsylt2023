@@ -15,10 +15,14 @@ public partial class PlayerCamera : Node3D
 	[Export] private Node3D _outerGimbal;
 	[Export] private Node3D _innerGimbal;
 
+	[Export] private Godot.Environment _env;
+	[Export] private Camera3D _camera;
+
     private double _mouseControleCountdown = 0.0f;
 
     public override void _Ready() {
         Input.MouseMode = Input.MouseModeEnum.Captured;
+		_camera.Environment = _env;
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
