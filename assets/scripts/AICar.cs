@@ -8,6 +8,8 @@ public partial class AICar : CharacterBody3D
 	[Export] private NodePath _PatrolPath;
 	[Export] private AudioStreamPlayer3D _EngineSound;
 	[Export] private AudioStreamPlayer3D _HornSound;
+	[Export] private RayCast3D _raycast;
+	float gravity = 1.0f;
 	private Vector3[] _patrolPoints;
 	private int _patrolIndex = 0;
 	private bool _active = true;
@@ -17,6 +19,15 @@ public partial class AICar : CharacterBody3D
 	{
 		if (_PatrolPath != null) {
 			_patrolPoints = GetNode<Path3D>(_PatrolPath).Curve.GetBakedPoints();
+			Vector3 closest = _patrolPoints[0];
+			for (var i = 0; i < _patrolPoints.Length; i++) {
+				var target = _patrolPoints[i];
+				var targetFlat = new Vector3(target.X, Position.Y, target.Z);
+				if (Position.DistanceTo(targetFlat) < Position.DistanceTo(new Vector3(closest.X, Position.Y, closest.Z))) {
+					closest = target;
+					_patrolIndex = i;
+				}
+			}
 		}
 	}
 
@@ -28,14 +39,21 @@ public partial class AICar : CharacterBody3D
 		}
 
 		var target = _patrolPoints[_patrolIndex];
-		if (Position.DistanceTo(target) < 4f) {
+		var targetFlat = new Vector3(target.X, Position.Y, target.Z);
+		if (Position.DistanceTo(targetFlat) < 2f) {
 			_patrolIndex = Mathf.Wrap(_patrolIndex + 1, 0, _patrolPoints.Count());
 			target = _patrolPoints[_patrolIndex];
+			targetFlat = new Vector3(target.X, Position.Y, target.Z);
 		}
-		var targetFlat = new Vector3(target.X, Position.Y, target.Z);
+		
 		Velocity = (targetFlat - Position).Normalized() * _speed * 3.6f * (float) delta;
+		Velocity += Vector3.Down * gravity;
 		LookAt(targetFlat, Vector3.Up);
 		MoveAndSlide();
+
+		var n = _raycast.GetCollisionNormal();
+		var xform = Align(GlobalTransform, n);
+		//GlobalTransform = xform;
 	}
 
 	public void Activate() {
@@ -53,5 +71,12 @@ public partial class AICar : CharacterBody3D
 			_HornSound.Play();
 			// despawn after a min?
 		}
+	}
+
+	private Transform3D Align(Transform3D x, Vector3 newY) {
+		x.Basis.Y = newY;
+		x.Basis.X = -x.Basis.Z.Cross(newY);
+		x.Basis = x.Basis.Orthonormalized();
+		return x;
 	}
 }
