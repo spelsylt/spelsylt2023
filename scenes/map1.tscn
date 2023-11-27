@@ -113,7 +113,7 @@ _car = NodePath("../fiatPanda")
 _endScene = ExtResource("3_fm44u")
 
 [node name="finish_line" parent="." node_paths=PackedStringArray("_gameMode") instance=ExtResource("1_chti6")]
-transform = Transform3D(0.876424, 0, 0.48154, 0, 1, 0, -0.48154, 0, 0.876424, -14.542, -15.6233, 39.945)
+transform = Transform3D(0.886939, 0, -0.461887, 0, 1, 0, 0.461887, 0, 0.886939, -82.1182, -26.4809, -189.3)
 _gameMode = NodePath("../game_mode")
 
 [node name="fiatPanda" parent="." node_paths=PackedStringArray("_playerCamera") instance=ExtResource("2_vf8vm")]

@@ -11,7 +11,7 @@ bottom_radius = 0.1
 height = 10.466
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dmgva"]
-size = Vector3(15, 1, 1)
+size = Vector3(15, 9.47021, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_woclr"]
 font_size = 46
@@ -39,7 +39,7 @@ mesh = SubResource("CylinderMesh_5100r")
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500041, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.75195, 0)
 shape = SubResource("BoxShape3D_dmgva")
 
 [node name="Control" type="Control" parent="."]

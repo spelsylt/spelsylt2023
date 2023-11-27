@@ -1,37 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfbobaatefx0a"]
+[gd_scene load_steps=5 format=3 uid="uid://cfbobaatefx0a"]
 
 [ext_resource type="Script" path="res://assets/scripts/ScaleMap.cs" id="1_wtao4"]
 [ext_resource type="PackedScene" uid="uid://bcvq2fclwrnp5" path="res://scenes/UI/ScaleUI.tscn" id="2_2o7fc"]
+[ext_resource type="PackedScene" uid="uid://cbcmox1tk7dql" path="res://scenes/entities/scale.tscn" id="2_l0312"]
 [ext_resource type="AudioStream" uid="uid://b1ib3tlb3e1kp" path="res://assets/sounds/main_menu.mp3" id="3_5l1w1"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_xjqfv"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_o16su"]
-size = Vector3(14.585, 0.0670918, 9.61341)
 
 [node name="ScaleMap" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.86459)
 script = ExtResource("1_wtao4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.8495)
+transform = Transform3D(1, 0, 0, 0, 0.911748, 0.410751, 0, -0.410751, 0.911748, -0.338268, -3.80851, 7.55731)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.485268, 0.874366, 0, -0.874366, 0.485268, 0, 0, 3.26058)
 light_energy = 2.0
 
-[node name="Scale" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.44533, -5.09434)
+[node name="scale" parent="." instance=ExtResource("2_l0312")]
+transform = Transform3D(-1.50732e-06, 0, -34.4834, 0, 34.4834, 0, 34.4834, 0, -1.50732e-06, -2.55395e-07, -16.4106, 0.74841)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Scale"]
-transform = Transform3D(6.8834, 0, 0, 0, 1, 0, 0, 0, 4.79935, 0, 0, 0)
-mesh = SubResource("PlaneMesh_xjqfv")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Scale"]
-shape = SubResource("BoxShape3D_o16su")
-
-[node name="ScaleUI" parent="." instance=ExtResource("2_2o7fc")]
+[node name="ScaleUI" parent="." node_paths=PackedStringArray("_scale") instance=ExtResource("2_2o7fc")]
+_scale = NodePath("../scale")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_5l1w1")

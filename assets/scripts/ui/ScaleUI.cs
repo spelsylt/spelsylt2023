@@ -7,6 +7,7 @@ public partial class ScaleUI : Control
 	[Export] private float _weightSpeed = 500.0f;
 	[Export] private AudioStreamPlayer _ScaleRiser;
 	[Export] private AudioStreamPlayer _AirHorn;
+	[Export] private Scale _scale;
 	private PhysicsCar _car;
 	private float _totalMass;
 	private float _startMass;
@@ -45,5 +46,6 @@ public partial class ScaleUI : Control
 			_weighing = false;
 		}
 		_weightLabel.Text = Mathf.Floor(_weightcounter) + " Kg";
+		_scale.SetWeight(_weightcounter);
 	}
 }
