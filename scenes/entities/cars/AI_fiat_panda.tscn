@@ -200,7 +200,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8aqpk")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_je3n4"]
-size = Vector3(1.52499, 1.12467, 3.48697)
+size = Vector3(1.76175, 1.12467, 3.73297)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mi4xl"]
 
@@ -264,8 +264,10 @@ doppler_tracking = 2
 [node name="CarHorn" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.32604)
 stream = ExtResource("5_tvs15")
-volume_db = -6.761
+volume_db = 10.704
+unit_size = 62.41
 bus = &"Env"
+attenuation_filter_db = -5.6
 doppler_tracking = 2
 
 [node name="RightFrontLight" type="SpotLight3D" parent="."]

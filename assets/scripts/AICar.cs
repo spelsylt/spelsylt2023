@@ -9,7 +9,7 @@ public partial class AICar : CharacterBody3D
 	[Export] private AudioStreamPlayer3D _EngineSound;
 	[Export] private AudioStreamPlayer3D _HornSound;
 	[Export] private RayCast3D _raycast;
-	float gravity = 1.0f;
+	float gravity = 9.8f;
 	private Vector3[] _patrolPoints;
 	private int _patrolIndex = 0;
 	private bool _active = true;
@@ -46,14 +46,25 @@ public partial class AICar : CharacterBody3D
 			targetFlat = new Vector3(target.X, Position.Y, target.Z);
 		}
 		
+		if (targetFlat.DistanceTo(Position) > 2f) {
+			LookAt(targetFlat, Vector3.Up);
+		} else {
+			var nextIndex = Mathf.Wrap(_patrolIndex + 1, 0, _patrolPoints.Count());
+			var nextTarget = _patrolPoints[nextIndex];
+			var nextTargetFlat = new Vector3(nextTarget.X, Position.Y, nextTarget.Z);
+			LookAt(nextTargetFlat, Vector3.Up);
+		}
 		Velocity = (targetFlat - Position).Normalized() * _speed * 3.6f * (float) delta;
 		Velocity += Vector3.Down * gravity;
-		LookAt(targetFlat, Vector3.Up);
 		MoveAndSlide();
 
 		var n = _raycast.GetCollisionNormal();
 		var xform = Align(GlobalTransform, n);
 		//GlobalTransform = xform;
+
+		if (_patrolIndex + 1 > _patrolPoints.Count()) {
+			Disable();
+		}
 	}
 
 	public void Activate() {
@@ -67,8 +78,10 @@ public partial class AICar : CharacterBody3D
 
 	public void OnCollide(Node3D body) {
 		if (body is PhysicsCar) {
+			if (!_HornSound.Playing && _active) {
+				_HornSound.Play();
+			}
 			Disable();
-			_HornSound.Play();
 			// despawn after a min?
 		}
 	}

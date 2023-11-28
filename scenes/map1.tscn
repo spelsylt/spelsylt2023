@@ -262,12 +262,23 @@ _EngineSound = NodePath("../AICar/Engine")
 _HornSound = NodePath("../AICar/CarHorn")
 _raycast = NodePath("../AICar/RayCast3D")
 
+[node name="AICar4" parent="." node_paths=PackedStringArray("_EngineSound", "_HornSound", "_raycast") instance=ExtResource("8_kjeox")]
+transform = Transform3D(-0.770057, 0, -0.637975, 0, 1, 0, 0.637975, 0, -0.770057, -43.7799, -39.2357, 171.934)
+motion_mode = 1
+floor_constant_speed = true
+floor_block_on_wall = false
+floor_snap_length = 0.2
+_PatrolPath = NodePath("../AIPathOpposing")
+_EngineSound = NodePath("../AICar/Engine")
+_HornSound = NodePath("../AICar/CarHorn")
+_raycast = NodePath("../AICar/RayCast3D")
+
 [node name="road_end_zone" parent="." instance=ExtResource("9_v1cpy")]
 transform = Transform3D(0.996745, 0, 0.0806165, 0, 1, 0, -0.0806165, 0, 0.996745, 39.3612, -8.12961, 50.9803)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_f1ef8")
-volume_db = -5.0
+volume_db = -8.296
 autoplay = true
 bus = &"Music"
 
