@@ -12,6 +12,10 @@ public partial class Pile : Node3D
 
 	private Vector3? _lastVelocity;
 
+	private float _releaseTimeout = 5.0f;
+	private float _releaseTimeoutTimer = 0.0f;
+	private bool _immune = false;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -40,11 +44,19 @@ public partial class Pile : Node3D
 			return;
 		}
 		var velocity = _car.LinearVelocity;
-		if (_lastVelocity != null) {
+		if (_lastVelocity != null && !_immune) {
 			float acceleration = ((velocity - (Vector3)_lastVelocity) / (float) delta).Length();
 			if (acceleration > _accelerationLimit) {
 				GD.Print("Acc: " + acceleration);
 				loseItems(acceleration * _accelerationToScoreFactor);
+				_releaseTimeoutTimer = _releaseTimeout;
+				_immune = true;
+			}
+		}
+		if (_immune) {
+			_releaseTimeoutTimer -= (float) delta;
+			if (_releaseTimeoutTimer <= 0) {
+				_immune = false;
 			}
 		}
 		_lastVelocity = velocity;
@@ -64,7 +76,7 @@ public partial class Pile : Node3D
 		if (remaining <= 0) {
 			return;
 		} else {
-			loseItems(score);
+			loseItems(remaining);
 		}
 	}
 

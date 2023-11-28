@@ -1,23 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfbobaatefx0a"]
+[gd_scene load_steps=7 format=3 uid="uid://cfbobaatefx0a"]
 
 [ext_resource type="Script" path="res://assets/scripts/ScaleMap.cs" id="1_wtao4"]
 [ext_resource type="PackedScene" uid="uid://bcvq2fclwrnp5" path="res://scenes/UI/ScaleUI.tscn" id="2_2o7fc"]
 [ext_resource type="PackedScene" uid="uid://cbcmox1tk7dql" path="res://scenes/entities/scale.tscn" id="2_l0312"]
 [ext_resource type="AudioStream" uid="uid://b1ib3tlb3e1kp" path="res://assets/sounds/main_menu.mp3" id="3_5l1w1"]
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_bf1b5"]
+size = Vector2(134.135, 82.69)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8dut"]
+albedo_color = Color(0.611765, 0.309804, 0.239216, 1)
+
 [node name="ScaleMap" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.86459)
 script = ExtResource("1_wtao4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.911748, 0.410751, 0, -0.410751, 0.911748, -0.338268, -3.80851, 7.55731)
+transform = Transform3D(1, 0, 0, 0, 0.911748, 0.410751, 0, -0.410751, 0.911748, -0.338268, -3.80851, 8.67351)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.485268, 0.874366, 0, -0.874366, 0.485268, 0, 0, 3.26058)
+transform = Transform3D(0.650907, -0.191937, 0.734493, -0.69387, 0.24212, 0.678176, -0.308002, -0.951072, 0.0244179, 0, 0, 3.26058)
 light_energy = 2.0
 
 [node name="scale" parent="." instance=ExtResource("2_l0312")]
-transform = Transform3D(-1.50732e-06, 0, -34.4834, 0, 34.4834, 0, 34.4834, 0, -1.50732e-06, -2.55395e-07, -16.4106, 0.74841)
+transform = Transform3D(-1.50732e-06, 0, -34.4834, 0, 34.4834, 0, 34.4834, 0, -1.50732e-06, -2.55395e-07, -17.1472, 0.74841)
 
 [node name="ScaleUI" parent="." node_paths=PackedStringArray("_scale") instance=ExtResource("2_2o7fc")]
 _scale = NodePath("../scale")
@@ -26,3 +32,8 @@ _scale = NodePath("../scale")
 stream = ExtResource("3_5l1w1")
 volume_db = -10.0
 autoplay = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.54502, -0.838423, 0, 0.838423, 0.54502, -0.230747, -8.24799, -11.7139)
+mesh = SubResource("PlaneMesh_bf1b5")
+surface_material_override/0 = SubResource("StandardMaterial3D_r8dut")

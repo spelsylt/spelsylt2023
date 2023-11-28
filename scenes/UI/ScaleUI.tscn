@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcvq2fclwrnp5"]
+[gd_scene load_steps=6 format=3 uid="uid://bcvq2fclwrnp5"]
 
 [ext_resource type="Script" path="res://assets/scripts/ui/ScaleUI.cs" id="1_i34bo"]
+[ext_resource type="PackedScene" uid="uid://mk0k340rdlyh" path="res://scenes/MainMenu.tscn" id="2_25gfe"]
 [ext_resource type="AudioStream" uid="uid://gxb3aiqb1mg0" path="res://assets/sounds/weight_riser.mp3" id="2_wykoj"]
 [ext_resource type="AudioStream" uid="uid://b1goesk8kf2ls" path="res://assets/sounds/airhorn.mp3" id="3_al5e3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g3vnm"]
 font_size = 64
 
-[node name="ScaleUI" type="Control" node_paths=PackedStringArray("_weightLabel", "_ScaleRiser", "_AirHorn")]
+[node name="ScaleUI" type="Control" node_paths=PackedStringArray("_weightLabel", "_timeLabel", "_MainMenuButton", "_ScaleRiser", "_AirHorn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,18 +17,36 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_i34bo")
 _weightLabel = NodePath("WeightLabel")
+_timeLabel = NodePath("TimeLabel")
+_MainMenuButton = NodePath("Button")
 _ScaleRiser = NodePath("ScaleRiser")
 _AirHorn = NodePath("AirHorn")
+_mainMenu = ExtResource("2_25gfe")
+
+[node name="TimeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -195.0
+offset_top = 51.0
+offset_right = 192.0
+offset_bottom = 142.0
+grow_horizontal = 2
+text = "00:00:00.000"
+label_settings = SubResource("LabelSettings_g3vnm")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WeightLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -31.0
-offset_top = 82.0
-offset_right = 31.0
-offset_bottom = 130.0
+offset_left = -65.0
+offset_top = 150.0
+offset_right = 62.0
+offset_bottom = 241.0
 grow_horizontal = 2
 text = "0 kg"
 label_settings = SubResource("LabelSettings_g3vnm")
@@ -42,3 +61,14 @@ bus = &"Env"
 [node name="AirHorn" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_al5e3")
 volume_db = -7.0
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 0
+offset_left = 477.0
+offset_top = 357.0
+offset_right = 677.0
+offset_bottom = 407.0
+text = "Main Menu"
+
+[connection signal="pressed" from="Button" to="." method="OnMainMenuButtonPressed"]

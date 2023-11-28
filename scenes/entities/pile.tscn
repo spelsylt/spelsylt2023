@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyemq52f1fbki"]
+[gd_scene load_steps=6 format=3 uid="uid://dyemq52f1fbki"]
 
 [ext_resource type="Script" path="res://assets/scripts/Pile.cs" id="1_aydlw"]
 [ext_resource type="PackedScene" uid="uid://c4axecwbi2p2y" path="res://scenes/entities/items/fridge.tscn" id="2_wy57n"]
 [ext_resource type="PackedScene" uid="uid://btt7o7vmga40a" path="res://scenes/entities/items/tv.tscn" id="3_2lbew"]
 [ext_resource type="PackedScene" uid="uid://cqhn1td7y4kq0" path="res://scenes/entities/items/cone.tscn" id="4_umjnq"]
+[ext_resource type="PackedScene" uid="uid://b8iqsf3sb72bu" path="res://scenes/entities/items/paint_can.tscn" id="5_ypiw4"]
 
 [node name="pile" type="Node3D"]
 script = ExtResource("1_aydlw")
@@ -19,3 +20,33 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -2.
 
 [node name="base_pile_item2" parent="base_pile_item3" instance=ExtResource("4_umjnq")]
 transform = Transform3D(0.997597, -0.0692864, 0, 0.0692864, 0.997597, 0, 0, 0, 1, 0.610488, 0.469055, 0.00942922)
+
+[node name="base_pile_item3" parent="base_pile_item3" instance=ExtResource("5_ypiw4")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.475755, 0.511814, -0.230368)
+
+[node name="base_pile_item" parent="base_pile_item3/base_pile_item3" instance=ExtResource("5_ypiw4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.266275, 0)
+
+[node name="base_pile_item" parent="base_pile_item3/base_pile_item3/base_pile_item" instance=ExtResource("5_ypiw4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.261569, 0)
+
+[node name="base_pile_item4" parent="base_pile_item3" instance=ExtResource("5_ypiw4")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.481865, 0.438417, 0.235466)
+
+[node name="base_pile_item5" parent="base_pile_item3" instance=ExtResource("5_ypiw4")]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0.440925, 0.149038, 0.260767)
+
+[node name="base_pile_item6" parent="base_pile_item3" instance=ExtResource("5_ypiw4")]
+transform = Transform3D(-1, -2.91133e-08, -8.24328e-08, 8.74228e-08, -0.333017, -0.942921, 0, -0.942921, 0.333017, 0.440925, 0.640437, 0.113301)
+
+[node name="base_pile_item" parent="." instance=ExtResource("5_ypiw4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.37059, -0.408457)
+
+[node name="base_pile_item2" parent="." instance=ExtResource("5_ypiw4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.111614, -0.408457)
+
+[node name="base_pile_item4" parent="." instance=ExtResource("5_ypiw4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.272276, -0.37059, -0.408457)
+
+[node name="base_pile_item5" parent="." instance=ExtResource("5_ypiw4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.272276, -0.111614, -0.408457)

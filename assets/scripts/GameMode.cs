@@ -64,7 +64,7 @@ public partial class GameMode : Node
 		_CountdownText.Hide();
 	}
 
-	private String formatTime(float time) {
+	public static String formatTime(float time) {
 		var milliseconds  = time * 1000;
 		TimeSpan t = TimeSpan.FromMilliseconds(milliseconds);
 		return string.Format("{0:D2}:{1:D2}:{2:D2}.{3:D3}", 
