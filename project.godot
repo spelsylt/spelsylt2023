@@ -13,6 +13,7 @@ config_version=5
 config/name="Spelsylt 2023"
 run/main_scene="res://scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+boot_splash/image="res://assets/materials/cover-art.png"
 config/icon="res://icon.svg"
 
 [dotnet]

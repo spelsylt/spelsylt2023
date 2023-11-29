@@ -204,10 +204,11 @@ size = Vector3(1.76175, 1.12467, 3.73297)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mi4xl"]
 
-[node name="fiatPanda" type="CharacterBody3D" node_paths=PackedStringArray("_EngineSound", "_HornSound", "_raycast")]
+[node name="fiatPanda" type="RigidBody3D" node_paths=PackedStringArray("_EngineSound", "_HornSound", "_raycast")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.553671, 0)
 collision_layer = 8
 collision_mask = 3
+mass = 1500.0
 script = ExtResource("1_7ojcu")
 _EngineSound = NodePath("Engine")
 _HornSound = NodePath("CarHorn")

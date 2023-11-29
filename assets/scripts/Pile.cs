@@ -13,8 +13,8 @@ public partial class Pile : Node3D
 	private Vector3? _lastVelocity;
 
 	private float _releaseTimeout = 5.0f;
-	private float _releaseTimeoutTimer = 0.0f;
-	private bool _immune = false;
+	private float _releaseTimeoutTimer = 5.0f;
+	private bool _immune = true;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

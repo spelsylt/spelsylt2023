@@ -19,6 +19,7 @@ public partial class ScaleUI : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		Input.MouseMode = Input.MouseModeEnum.Visible;
 		_MainMenuButton.Visible = false;
 		if (Global.Instance.Car != null) {
 			_car = Global.Instance.Car;

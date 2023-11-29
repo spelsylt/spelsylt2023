@@ -2,13 +2,12 @@ using Godot;
 using System;
 using System.Linq;
 
-public partial class AICar : RigidBody3D
+public partial class PhysicsAICar : VehicleBody3D
 {
 	[Export] private float _speed = 100.0f;
 	[Export] private NodePath _PatrolPath;
 	[Export] private AudioStreamPlayer3D _EngineSound;
 	[Export] private AudioStreamPlayer3D _HornSound;
-	[Export] private RayCast3D _raycast;
 	float gravity = 9.8f;
 	private Vector3[] _patrolPoints;
 	private int _patrolIndex = 0;
@@ -22,12 +21,15 @@ public partial class AICar : RigidBody3D
 		if (_PatrolPath != null) {
 			_patrolPoints = GetNode<Path3D>(_PatrolPath).Curve.GetBakedPoints();
 			Vector3 closest = _patrolPoints[0];
-			for (var i = 0; i < _patrolPoints.Length; i++) {
+			for (var i = 0; i < _patrolPoints.Count(); i++) {
 				var target = _patrolPoints[i];
 				var targetFlat = new Vector3(target.X, Position.Y, target.Z);
-				if (Position.DistanceTo(targetFlat) < Position.DistanceTo(new Vector3(closest.X, Position.Y, closest.Z))) {
-					closest = target;
-					_patrolIndex = i;
+				var relative = Position - targetFlat;
+				if (GlobalTransform.Basis.Z.Dot(relative) < 0) {
+					if (Position.DistanceTo(targetFlat) < Position.DistanceTo(new Vector3(closest.X, Position.Y, closest.Z))) {
+						closest = target;
+						_patrolIndex = i;
+					}
 				}
 			}
 		}
@@ -42,25 +44,29 @@ public partial class AICar : RigidBody3D
 
 		var target = _patrolPoints[_patrolIndex];
 		var targetFlat = new Vector3(target.X, Position.Y, target.Z);
+		//GD.Print(Position.DistanceTo(targetFlat));
 		if (Position.DistanceTo(targetFlat) < 2f) {
-			_patrolIndex = Mathf.Wrap(_patrolIndex + 1, 0, _patrolPoints.Count());
+			_patrolIndex = _patrolIndex + 1;
+			if (_patrolIndex >= _patrolPoints.Count() - 1) {
+				_active = false;
+				EngineForce = 0;
+				return;
+			}
 			target = _patrolPoints[_patrolIndex];
 			targetFlat = new Vector3(target.X, Position.Y, target.Z);
 		}
-		
-		if (targetFlat.DistanceTo(Position) > 2f) {
-			LookAtTargetInterpolated(targetFlat, 1f);
-		} else {
-			var nextIndex = Mathf.Wrap(_patrolIndex + 1, 0, _patrolPoints.Count());
-			var nextTarget = _patrolPoints[nextIndex];
-			var nextTargetFlat = new Vector3(nextTarget.X, Position.Y, nextTarget.Z);
-			LookAtTargetInterpolated(nextTargetFlat, 1f);
-		}
-		Velocity = (targetFlat - Position).Normalized() * _speed * 3.6f * (float) delta;
-		Position = Position + Velocity;
+		GD.Print(Position.AngleTo(targetFlat));
+		//Steering = (-LinearVelocity.Normalized().AngleTo(targetFlat)) / 10f;
+		//GD.Print(Steering);
 
-		if (_patrolIndex + 1 > _patrolPoints.Count()) {
-			Disable();
+		var targetVector = targetFlat - Position;
+		var fwd = Transform.Basis.Z;
+		Steering = fwd.Cross(targetVector.Normalized()).Y;
+		GD.Print(Steering);
+
+		EngineForce = 0;
+		if (LinearVelocity.Length() < 10) {
+			EngineForce = _speed * 100 * (float)delta;
 		}
 	}
 
@@ -71,6 +77,8 @@ public partial class AICar : RigidBody3D
 	public void Disable()  {
 		_active = false;
 		_EngineSound.Stop();
+		EngineForce = 0.0f;
+		Brake = 100.0f;
 	}
 
 	public void OnCollide(Node3D body) {
@@ -82,18 +90,4 @@ public partial class AICar : RigidBody3D
 			// despawn after a min?
 		}
 	}
-
-	private Transform3D Align(Transform3D x, Vector3 newY) {
-		x.Basis.Y = newY;
-		x.Basis.X = -x.Basis.Z.Cross(newY);
-		x.Basis = x.Basis.Orthonormalized();
-		return x;
-	}
-
-	public void LookAtTargetInterpolated(Vector3 target, float weight)
-{
-    Transform3D xForm = Transform; // Your transform
-    xForm = xForm.LookingAt(target, Vector3.Up);
-    Transform = Transform.InterpolateWith(xForm, weight);
-}
 }
