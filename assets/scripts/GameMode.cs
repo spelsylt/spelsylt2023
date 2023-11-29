@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class GameMode : Node
 {
@@ -14,6 +15,9 @@ public partial class GameMode : Node
 	[Export] private PackedScene _endScene;
 
 	[Export] private Timer _GoTextTimer;
+
+	public static List<Node3D> droppedItems = new List<Node3D>(); // fix for released items not dissappearing at reload
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -41,6 +45,8 @@ public partial class GameMode : Node
 		}
 
 		if (Input.IsActionPressed("Reload")) {
+			droppedItems.ForEach(x => x.QueueFree());
+			droppedItems = new List<Node3D>();
 			GetTree().ReloadCurrentScene();
 		}
 	}

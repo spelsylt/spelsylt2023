@@ -71,6 +71,7 @@ public partial class BasePileItem : RigidBody3D
 		item.GlobalRotation = rot;
 		item.ApplyForce(new Vector3(GD.Randf(), GD.Randf(), GD.Randf()) * 100f * GD.Randf());
 		_childItems = GetChildren().Where(x => x is BasePileItem).Cast<BasePileItem>().ToList();
+		GameMode.droppedItems.Add(item);
 	}
 
 	public float GetValue() {

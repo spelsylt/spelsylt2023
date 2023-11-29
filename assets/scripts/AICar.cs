@@ -46,13 +46,13 @@ public partial class AICar : CharacterBody3D
 			targetFlat = new Vector3(target.X, Position.Y, target.Z);
 		}
 		
-		if (targetFlat.DistanceTo(Position) > 2f) {
-			LookAt(targetFlat, Vector3.Up);
+		if (targetFlat.DistanceTo(Position) > 1f) {
+			LookAtTargetInterpolated(targetFlat, 0.01f * (float)delta);
 		} else {
 			var nextIndex = Mathf.Wrap(_patrolIndex + 1, 0, _patrolPoints.Count());
 			var nextTarget = _patrolPoints[nextIndex];
 			var nextTargetFlat = new Vector3(nextTarget.X, Position.Y, nextTarget.Z);
-			LookAt(nextTargetFlat, Vector3.Up);
+			LookAtTargetInterpolated(nextTargetFlat, 0.01f);
 		}
 		Velocity = (targetFlat - Position).Normalized() * _speed * 3.6f * (float) delta;
 		Velocity += Vector3.Down * gravity;
@@ -60,7 +60,7 @@ public partial class AICar : CharacterBody3D
 
 		var n = _raycast.GetCollisionNormal();
 		var xform = Align(GlobalTransform, n);
-		//GlobalTransform = xform;
+		GlobalTransform = xform;
 
 		if (_patrolIndex + 1 > _patrolPoints.Count()) {
 			Disable();
@@ -92,4 +92,11 @@ public partial class AICar : CharacterBody3D
 		x.Basis = x.Basis.Orthonormalized();
 		return x;
 	}
+
+	public void LookAtTargetInterpolated(Vector3 target, float weight)
+{
+    Transform3D xForm = Transform; // Your transform
+    xForm = xForm.LookingAt(target, Vector3.Up);
+    Transform = Transform.InterpolateWith(xForm, weight);
+}
 }

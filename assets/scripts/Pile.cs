@@ -92,6 +92,7 @@ public partial class Pile : Node3D
 			item.GlobalRotation = rot;
 			item.ApplyForce(new Vector3(GD.Randf(), GD.Randf(), GD.Randf()) * 100f * GD.Randf());
 			item.SetCollisionLayerValue(1, true); // enables collision with other items and car
+			GameMode.droppedItems.Add(item);
 		} else {
 			item.GetParentItem().RemoveChildItem(item);
 		}
